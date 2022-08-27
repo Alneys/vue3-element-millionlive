@@ -1,11 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import Layout from '../layout/index.vue';
+import fixedRoutes from './fixedRoutes';
 
 const routes = [
-  { path: '/', component: () => import('../layout/index.vue') },
+  {
+    path: '/',
+    redirect: '/home',
+  },
+  { path: '/', component: () => Layout },
   {
     path: '/debug',
     component: () => import('../AppDefault.vue'),
   },
+  ...fixedRoutes,
 ];
 
 const router = createRouter({
