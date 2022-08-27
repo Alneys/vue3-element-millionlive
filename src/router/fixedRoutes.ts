@@ -1,15 +1,15 @@
-const Layout = () => import('@/layout/index.vue');
-const Home = () => import('@/views/home/index.vue');
+import Layout from '@/layout/index.vue';
+import Home from '@/views/home/index.vue';
+import About from '@/views/about/index.vue';
 
 export default [
   {
     path: '/home',
-    component: Layout,
     name: 'Dashboard',
+    component: Layout,
     meta: {
       title: 'dashboard',
     },
-    icon: 'home',
     children: [
       {
         path: '',
@@ -17,7 +17,14 @@ export default [
         component: Home,
         meta: {
           title: 'home',
-          affix: true,
+        },
+      },
+      {
+        path: '/about',
+        name: 'about',
+        component: About,
+        meta: {
+          title: 'about',
         },
       },
     ],

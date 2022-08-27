@@ -1,6 +1,8 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import Layout from '../layout/index.vue';
+import { createRouter, createWebHistory } from 'vue-router';
 import fixedRoutes from './fixedRoutes';
+import errorRoutes from './modules/error';
+
+import Layout from '@/layout/index.vue';
 
 const routes = [
   {
@@ -13,10 +15,11 @@ const routes = [
     component: () => import('../AppDefault.vue'),
   },
   ...fixedRoutes,
+  ...errorRoutes,
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [...routes],
 });
 
