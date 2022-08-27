@@ -28,5 +28,17 @@ module.exports = {
         ignores: ['index'],
       },
     ],
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always',
+          normal: 'never',
+          component: 'always',
+        },
+        svg: 'any',
+        math: 'any',
+      },
+    ],
   },
 };
