@@ -2,6 +2,7 @@
 import LayoutHeader from './LayoutHeader.vue';
 import LayoutAside from './LayoutAside.vue';
 import LayoutMain from './LayoutMain.vue';
+import LayoutFooter from './LayoutFooter.vue';
 </script>
 
 <template>
@@ -22,7 +23,7 @@ import LayoutMain from './LayoutMain.vue';
       </el-container>
     </el-main>
     <el-footer>
-      <div><span>Vue 3 + Element Plus + TypeScript + Scss</span></div>
+      <LayoutFooter />
     </el-footer>
   </el-container>
 </template>
@@ -55,12 +56,8 @@ import LayoutMain from './LayoutMain.vue';
     }
   }
   > .el-footer {
-    display: flex;
     height: 22px;
-    align-items: center;
-    justify-content: flex-end;
     background-color: var(--ml-color-elena);
-    font-size: var(--el-font-size-extra-small);
   }
 }
 </style>
