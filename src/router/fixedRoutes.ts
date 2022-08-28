@@ -4,13 +4,17 @@ import About from '@/views/about/index.vue';
 
 export default [
   {
-    path: '/home',
+    path: '',
     name: 'Dashboard',
     component: Layout,
     meta: {
       title: 'dashboard',
     },
     children: [
+      {
+        path: '/home',
+        redirect: '/',
+      },
       {
         path: '',
         name: 'home',
