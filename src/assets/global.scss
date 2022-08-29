@@ -2,8 +2,13 @@
   // Custom color
   --ml-color-miya: #d7a96b;
   --ml-color-elena: #9bce92;
+  --ml-font-family: "Noto Sans SC", "Noto Sans JP", sans-serif,
+    var(--el-font-family);
 
-  font-family: var(--el-font-family);
+  // override user agent stylesheet
+  * {
+    font-family: var(--ml-font-family);
+  }
   h1 {
     font-size: var(--el-font-size-extra-large);
   }
