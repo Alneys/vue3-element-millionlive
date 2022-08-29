@@ -8,6 +8,6 @@
 
 <style lang="scss" scoped>
 .layout-main {
-  height: 2000px;
+  height: auto;
 }
 </style>

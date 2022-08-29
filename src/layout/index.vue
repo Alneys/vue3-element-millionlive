@@ -16,8 +16,13 @@ import LayoutFooter from './LayoutFooter.vue';
           <LayoutAside />
         </el-aside>
         <el-main>
-          <el-scrollbar>
+          <el-scrollbar id="layout-main-scrollbar">
             <LayoutMain />
+            <el-backtop
+              target="#layout-main-scrollbar > div"
+              :right="20"
+              :bottom="20 + 22"
+            />
           </el-scrollbar>
         </el-main>
       </el-container>
@@ -53,6 +58,10 @@ import LayoutFooter from './LayoutFooter.vue';
       }
       > .el-main {
         padding: 0;
+        .el-backtop {
+          background-color: var(--ml-color-elena);
+          color: white;
+        }
       }
     }
   }
