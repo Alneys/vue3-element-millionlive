@@ -34,6 +34,7 @@ import LayoutFooter from './LayoutFooter.vue';
   height: 100%;
   > .el-header {
     display: flex;
+    overflow: hidden;
     height: 40px;
     align-items: center;
     background-color: var(--ml-color-elena);
@@ -56,6 +57,7 @@ import LayoutFooter from './LayoutFooter.vue';
     }
   }
   > .el-footer {
+    overflow: hidden;
     height: 22px;
     background-color: var(--ml-color-elena);
   }

@@ -16,6 +16,7 @@
     color: black;
     font-size: var(--el-font-size-extra-large);
     font-weight: bold;
+    white-space: nowrap;
   }
 }
 </style>

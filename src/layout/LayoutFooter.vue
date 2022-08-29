@@ -16,6 +16,9 @@
   justify-content: flex-end;
   cursor: default;
   font-size: var(--el-font-size-extra-small);
+  span {
+    white-space: nowrap;
+  }
   > span + span {
     margin-left: calc(2 * var(--el-font-size-extra-small));
   }
