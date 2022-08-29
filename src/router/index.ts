@@ -1,10 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import './router.d';
+
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from 'vue-router';
 import fixedRoutes from './fixedRoutes';
 import errorRoutes from './modules/error';
 
 import Layout from '@/layout/index.vue';
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/home',

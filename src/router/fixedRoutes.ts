@@ -1,6 +1,7 @@
+import type { RouteRecordRaw } from 'vue-router';
+
 import Layout from '@/layout/index.vue';
-import Home from '@/views/home/index.vue';
-import About from '@/views/about/index.vue';
+import menuRoutes from './modules/menu';
 
 export default [
   {
@@ -15,22 +16,7 @@ export default [
         path: '/home',
         redirect: '/',
       },
-      {
-        path: '',
-        name: 'home',
-        component: Home,
-        meta: {
-          title: 'home',
-        },
-      },
-      {
-        path: '/about',
-        name: 'about',
-        component: About,
-        meta: {
-          title: 'about',
-        },
-      },
+      ...menuRoutes,
     ],
   },
-];
+] as RouteRecordRaw[];
