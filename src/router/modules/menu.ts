@@ -11,13 +11,13 @@ const menuRoutes: Array<menuRoutesType> = [
     path: '',
     name: 'Home',
     component: Home,
-    alias: '/home',
+    alias: 'home',
     meta: {
       title: 'Home',
     },
   },
   {
-    path: '/about',
+    path: 'about',
     name: 'About',
     component: About,
     meta: {
@@ -25,7 +25,7 @@ const menuRoutes: Array<menuRoutesType> = [
     },
   },
   {
-    path: '/test',
+    path: 'test',
     name: 'Test',
     component: Test,
     meta: {
