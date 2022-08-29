@@ -2,6 +2,7 @@ import type { RouteMeta, RouteRecordRaw } from 'vue-router';
 
 import Home from '@/views/home/index.vue';
 import About from '@/views/about/index.vue';
+import Test from '@/views/test/index.vue';
 
 type menuRoutesType = RouteRecordRaw & { meta: RouteMeta };
 
@@ -21,6 +22,14 @@ const menuRoutes: Array<menuRoutesType> = [
     component: About,
     meta: {
       title: 'About',
+    },
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test,
+    meta: {
+      title: 'Test',
     },
   },
 ];
