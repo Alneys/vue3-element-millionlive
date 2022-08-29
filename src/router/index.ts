@@ -16,10 +16,6 @@ const routes: RouteRecordRaw[] = [
     redirect: '/home',
   },
   { path: '/', component: () => Layout },
-  {
-    path: '/debug',
-    component: () => import('../AppDefault.vue'),
-  },
   ...fixedRoutes,
   ...errorRoutes,
 ];
