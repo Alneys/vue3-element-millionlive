@@ -3,12 +3,15 @@ import LayoutHeader from './LayoutHeader.vue';
 import LayoutAside from './LayoutAside.vue';
 import LayoutMain from './LayoutMain.vue';
 import LayoutFooter from './LayoutFooter.vue';
+import { ref } from 'vue';
+
+const isMenuCollapse = ref(false);
 </script>
 
 <template>
   <el-container id="layout">
     <el-header>
-      <LayoutHeader />
+      <LayoutHeader :is-menu-collapse="isMenuCollapse" />
     </el-header>
     <el-main>
       <el-container>
