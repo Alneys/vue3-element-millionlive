@@ -1,24 +1,32 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import menuRoutes from '@/router/modules/menu';
 import { useLayoutStore } from '@/store/layout';
 
-const layoutState = useLayoutStore();
-
+const layoutStore = useLayoutStore();
 const route = useRoute();
 const activePath = computed(() => route.path);
+
+watch(
+  () => route.path,
+  () => {
+    if (layoutStore.isMasked) {
+      layoutStore.toggleMenuCollapse();
+    }
+  }
+);
 </script>
 
 <template>
   <div
     :class="{
       'layout-aside': true,
-      collapse: layoutState.isMenuCollapse,
-      compact: layoutState.isLayoutCompact,
+      collapse: layoutStore.isMenuCollapse,
+      compact: layoutStore.isLayoutCompact,
     }"
   >
-    <el-scrollbar>
+    <el-scrollbar class="layout-aside-scrollbar">
       <el-menu router :default-active="activePath">
         <el-menu-item
           v-for="each in menuRoutes"
@@ -47,7 +55,7 @@ const activePath = computed(() => route.path);
 <style lang="scss" scoped>
 .layout-aside {
   --el-menu-bg-color: transparent;
-  --layout-aside-width: 150px;
+  --layout-aside-width: 200px;
 
   width: var(--layout-aside-width);
   height: 100%;
@@ -57,6 +65,9 @@ const activePath = computed(() => route.path);
   // .el-menu {
   //   border-right: none;
   // }
+  &.compact {
+    width: 60vw;
+  }
   &.collapse {
     width: 0;
   }

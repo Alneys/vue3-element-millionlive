@@ -3,17 +3,21 @@ import LayoutHeader from './LayoutHeader.vue';
 import LayoutAside from './LayoutAside.vue';
 import LayoutMain from './LayoutMain.vue';
 import LayoutFooter from './LayoutFooter.vue';
+
 import { useResizeEventListener } from './hooks/useResizeEventListener';
-import { ref } from 'vue';
+import { useLayoutStore } from '@/store/layout';
 
 useResizeEventListener();
-const isMenuCollapse = ref(false);
+const layoutStore = useLayoutStore();
 </script>
 
 <template>
-  <el-container id="layout">
+  <el-container
+    id="layout"
+    :class="{ 'compact-layout': layoutStore.isLayoutCompact }"
+  >
     <el-header>
-      <LayoutHeader :is-menu-collapse="isMenuCollapse" />
+      <LayoutHeader />
     </el-header>
     <el-main>
       <el-container>
@@ -21,14 +25,7 @@ const isMenuCollapse = ref(false);
           <LayoutAside />
         </el-aside>
         <el-main>
-          <el-scrollbar id="layout-main-scrollbar">
-            <LayoutMain />
-            <el-backtop
-              target="#layout-main-scrollbar > div"
-              :right="20"
-              :bottom="20 + 22"
-            />
-          </el-scrollbar>
+          <LayoutMain />
         </el-main>
       </el-container>
     </el-main>
@@ -45,11 +42,12 @@ const isMenuCollapse = ref(false);
   > .el-header {
     display: flex;
     overflow: hidden;
-    height: 40px;
+    height: var(--layout-header-height);
     align-items: center;
     background-color: var(--ml-color-elena);
   }
   > .el-main {
+    overflow: hidden;
     flex: 1;
     padding: 0;
     background-color: var(--ml-color-miya);
@@ -62,19 +60,16 @@ const isMenuCollapse = ref(false);
         height: 100%;
       }
       > .el-main {
+        overflow: hidden;
         height: 100%;
         flex: 1;
         padding: 0;
-        .el-backtop {
-          background-color: var(--ml-color-elena);
-          color: white;
-        }
       }
     }
   }
   > .el-footer {
     overflow: hidden;
-    height: 22px;
+    height: var(--layout-footer-height);
     background-color: var(--ml-color-elena);
   }
 }
