@@ -2,12 +2,7 @@
 
 <template>
   <div class="layout-header">
-    <el-link
-      type="default"
-      :underline="false"
-      href="http://127.0.0.1:5173"
-      target="_blank"
-    >
+    <el-link type="default" :underline="false" href="/" target="_blank">
       Vue3-Element-MillionLive
     </el-link>
   </div>
@@ -21,6 +16,7 @@
     color: black;
     font-size: var(--el-font-size-extra-large);
     font-weight: bold;
+    white-space: nowrap;
   }
 }
 </style>

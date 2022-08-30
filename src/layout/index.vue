@@ -2,6 +2,7 @@
 import LayoutHeader from './LayoutHeader.vue';
 import LayoutAside from './LayoutAside.vue';
 import LayoutMain from './LayoutMain.vue';
+import LayoutFooter from './LayoutFooter.vue';
 </script>
 
 <template>
@@ -15,14 +16,19 @@ import LayoutMain from './LayoutMain.vue';
           <LayoutAside />
         </el-aside>
         <el-main>
-          <el-scrollbar>
+          <el-scrollbar id="layout-main-scrollbar">
             <LayoutMain />
+            <el-backtop
+              target="#layout-main-scrollbar > div"
+              :right="20"
+              :bottom="20 + 22"
+            />
           </el-scrollbar>
         </el-main>
       </el-container>
     </el-main>
     <el-footer>
-      <div><span>Vue 3 + Element Plus + TypeScript + Scss</span></div>
+      <LayoutFooter />
     </el-footer>
   </el-container>
 </template>
@@ -33,6 +39,7 @@ import LayoutMain from './LayoutMain.vue';
   height: 100%;
   > .el-header {
     display: flex;
+    overflow: hidden;
     height: 40px;
     align-items: center;
     background-color: var(--ml-color-elena);
@@ -51,16 +58,17 @@ import LayoutMain from './LayoutMain.vue';
       }
       > .el-main {
         padding: 0;
+        .el-backtop {
+          background-color: var(--ml-color-elena);
+          color: white;
+        }
       }
     }
   }
   > .el-footer {
-    display: flex;
+    overflow: hidden;
     height: 22px;
-    align-items: center;
-    justify-content: flex-end;
     background-color: var(--ml-color-elena);
-    font-size: var(--el-font-size-extra-small);
   }
 }
 </style>

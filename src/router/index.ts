@@ -1,15 +1,27 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import './router.d';
 
-const routes = [
-  { path: '/', component: () => import('../layout/index.vue') },
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from 'vue-router';
+import fixedRoutes from './fixedRoutes';
+import errorRoutes from './modules/error';
+
+import Layout from '@/layout/index.vue';
+
+const routes: RouteRecordRaw[] = [
   {
-    path: '/debug',
-    component: () => import('../AppDefault.vue'),
+    path: '/',
+    redirect: '/home',
   },
+  { path: '/', component: () => Layout },
+  ...fixedRoutes,
+  ...errorRoutes,
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [...routes],
 });
 
