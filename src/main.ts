@@ -9,13 +9,13 @@ import router from './router';
 // Element Plus
 import ElementPlus from 'element-plus';
 // import 'element-plus/dist/index.css';
-import './assets/element-ml.scss'; // custom stylesheet for Element Plus
+import './assets/style/element-ml.scss'; // custom stylesheet for Element Plus
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 // import en from 'element-plus/lib/locale/lang/en';
 // import ja from 'element-plus/lib/locale/lang/ja';
 
 // global stylesheet
-import './assets/global.scss';
+import './assets/style/global-style.scss';
 
 // ------------------------------------------------------------
 
