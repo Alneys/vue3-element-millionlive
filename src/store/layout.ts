@@ -6,13 +6,12 @@ export const useLayoutStore = defineStore({
     isMenuCollapse: false,
     isLayoutCompact: false,
   }),
-  getters: {},
+  getters: {
+    isMasked: (state) => state.isLayoutCompact && !state.isMenuCollapse,
+  },
   actions: {
     toggleMenuCollapse() {
       this.isMenuCollapse = !this.isMenuCollapse;
-    },
-    toggleLayoutCompact() {
-      this.isLayoutCompact = !this.isLayoutCompact;
     },
   },
 });
