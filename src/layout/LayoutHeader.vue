@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { Expand, Fold } from '@element-plus/icons-vue';
-import { defineProps } from 'vue';
-defineProps<{
-  isMenuCollapse: boolean;
-}>();
+import { useLayoutStore } from '@/store/layout';
 
-const test = () => {
-  console.log(123);
-};
+const layoutState = useLayoutStore();
 </script>
 
 <template>
@@ -15,8 +10,8 @@ const test = () => {
     <el-button
       plain
       text
-      :icon="isMenuCollapse ? Expand : Fold"
-      @click="test"
+      :icon="layoutState.isMenuCollapse ? Expand : Fold"
+      @click="layoutState.toggleMenuCollapse"
     />
     <el-link type="default" :underline="false" href="/" target="_blank">
       Vue3-Element-MillionLive

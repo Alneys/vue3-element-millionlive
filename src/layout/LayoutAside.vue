@@ -2,13 +2,22 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import menuRoutes from '@/router/modules/menu';
+import { useLayoutStore } from '@/store/layout';
+
+const layoutState = useLayoutStore();
 
 const route = useRoute();
 const activePath = computed(() => route.path);
 </script>
 
 <template>
-  <div class="layout-aside">
+  <div
+    :class="{
+      'layout-aside': true,
+      collapse: layoutState.isMenuCollapse,
+      compact: layoutState.isLayoutCompact,
+    }"
+  >
     <el-scrollbar>
       <el-menu router :default-active="activePath">
         <el-menu-item
@@ -38,11 +47,18 @@ const activePath = computed(() => route.path);
 <style lang="scss" scoped>
 .layout-aside {
   --el-menu-bg-color: transparent;
+  --layout-aside-width: 150px;
 
+  width: var(--layout-aside-width);
   height: 100%;
   background-color: var(--ml-color-miya);
-  .el-menu {
-    border-right: none;
+  transition: all 0.3s;
+
+  // .el-menu {
+  //   border-right: none;
+  // }
+  &.collapse {
+    width: 0;
   }
 }
 </style>

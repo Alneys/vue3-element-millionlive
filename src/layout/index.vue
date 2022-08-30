@@ -3,8 +3,10 @@ import LayoutHeader from './LayoutHeader.vue';
 import LayoutAside from './LayoutAside.vue';
 import LayoutMain from './LayoutMain.vue';
 import LayoutFooter from './LayoutFooter.vue';
+import { useResizeEventListener } from './hooks/useResizeEventListener';
 import { ref } from 'vue';
 
+useResizeEventListener();
 const isMenuCollapse = ref(false);
 </script>
 
@@ -56,10 +58,12 @@ const isMenuCollapse = ref(false);
     > .el-container {
       height: 100%;
       > .el-aside {
-        width: 200px;
+        width: auto;
         height: 100%;
       }
       > .el-main {
+        height: 100%;
+        flex: 1;
         padding: 0;
         .el-backtop {
           background-color: var(--ml-color-elena);
