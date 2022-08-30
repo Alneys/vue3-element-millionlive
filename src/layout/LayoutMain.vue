@@ -9,5 +9,6 @@
 <style lang="scss" scoped>
 .layout-main {
   height: auto;
+  padding: 12px 0 12px 12px;
 }
 </style>
