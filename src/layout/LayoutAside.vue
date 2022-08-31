@@ -55,16 +55,15 @@ watch(
 <style lang="scss" scoped>
 .layout-aside {
   --el-menu-bg-color: transparent;
-  --layout-aside-width: 200px;
+  --el-menu-active-color: brown;
 
-  width: var(--layout-aside-width);
+  width: 200px;
   height: 100%;
   background-color: var(--ml-color-miya);
   transition: all var(--el-transition-duration);
-
-  // .el-menu {
-  //   border-right: none;
-  // }
+  .el-menu {
+    border-right: none;
+  }
   &.compact {
     width: 60vw;
   }
