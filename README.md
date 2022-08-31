@@ -1,11 +1,11 @@
 # vue3-element-millionlive
 
 [![vue3](https://img.shields.io/badge/vue-^3.2.37-success.svg)](https://v3.vuejs.org/)
-[![Element Plus](https://img.shields.io/badge/Element%20Plus-^2.2.14-success.svg)](http://element-plus.org/)
+[![Element Plus](https://img.shields.io/badge/Element%20Plus-^2.2.15-success.svg)](http://element-plus.org/)
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-~4.7.4-success.svg)](https://www.typescriptlang.org/)
-[![Sass](https://img.shields.io/badge/Sass-^1.54.5-success.svg)](https://sass-lang.com/)
-[![Pinia](https://img.shields.io/badge/Pinia-^2.0.17-success.svg)](https://pinia.vuejs.org/)
+[![Sass](https://img.shields.io/badge/Sass-^1.54.7-success.svg)](https://sass-lang.com/)
+[![Pinia](https://img.shields.io/badge/Pinia-^2.0.21-success.svg)](https://pinia.vuejs.org/)
 
 > Refer to [original README at vue initialization](./README_VUE_INIT.md) for basic information about
 >
