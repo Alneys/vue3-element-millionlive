@@ -30,20 +30,23 @@ const handleClick = () => {
 <style lang="scss" scoped>
 .layout-main {
   height: 100%;
-  transition: all 0.3s;
+  transition: all var(--el-transition-duration);
   > .layout-main-scrollbar {
-    padding: 12px 0 12px 12px;
+    padding: var(--el-font-size-extra-small);
   }
   .el-backtop {
     right: 20px !important;
     bottom: calc(20px + var(--layout-footer-height)) !important;
     background-color: var(--ml-color-elena);
     color: white;
-    transition: all 0.3s;
+    transition: all var(--el-transition-duration);
   }
   &.compact {
     width: 100vw;
     flex: 0;
+    > .layout-main-scrollbar {
+      padding: var(--el-font-size-extra-large);
+    }
   }
   &.masked {
     z-index: 1;

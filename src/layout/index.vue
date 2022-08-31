@@ -37,6 +37,8 @@ const layoutStore = useLayoutStore();
 
 <style lang="scss" scoped>
 #layout {
+  --layout-header-footer-padding: 0 var(--el-font-size-extra-small);
+
   width: 100%;
   height: 100%;
   > .el-header {
@@ -44,6 +46,7 @@ const layoutStore = useLayoutStore();
     overflow: hidden;
     height: var(--layout-header-height);
     align-items: center;
+    padding: var(--layout-header-footer-padding);
     background-color: var(--ml-color-elena);
   }
   > .el-main {
@@ -70,6 +73,7 @@ const layoutStore = useLayoutStore();
   > .el-footer {
     overflow: hidden;
     height: var(--layout-footer-height);
+    padding: var(--layout-header-footer-padding);
     background-color: var(--ml-color-elena);
   }
 }

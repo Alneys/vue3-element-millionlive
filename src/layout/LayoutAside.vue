@@ -60,7 +60,7 @@ watch(
   width: var(--layout-aside-width);
   height: 100%;
   background-color: var(--ml-color-miya);
-  transition: all 0.3s;
+  transition: all var(--el-transition-duration);
 
   // .el-menu {
   //   border-right: none;
