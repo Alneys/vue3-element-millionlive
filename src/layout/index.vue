@@ -75,6 +75,12 @@ const layoutStore = useLayoutStore();
     height: var(--layout-footer-height);
     padding: var(--layout-header-footer-padding);
     background-color: var(--ml-color-elena);
+    transition: all var(--el-transition-duration);
+  }
+}
+.compact-layout#layout {
+  > .el-footer {
+    height: 0;
   }
 }
 </style>

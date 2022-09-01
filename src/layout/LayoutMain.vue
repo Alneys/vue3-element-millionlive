@@ -47,6 +47,9 @@ const handleClick = () => {
   &.compact {
     width: 100vw;
     flex: 0;
+    .el-backtop {
+      bottom: 20px !important;
+    }
   }
   &.masked {
     z-index: 1;
@@ -62,8 +65,6 @@ const handleClick = () => {
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(
-    100vh - var(--layout-header-height) - var(--layout-footer-height)
-  );
+  height: 100vh;
 }
 </style>
