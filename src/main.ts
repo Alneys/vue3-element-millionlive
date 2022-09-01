@@ -8,14 +8,15 @@ import router from './router';
 
 // Element Plus
 import ElementPlus from 'element-plus';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 // import 'element-plus/dist/index.css';
-import './assets/element-ml.scss'; // custom stylesheet for Element Plus
+import './assets/style/element-ml.scss'; // custom stylesheet for Element Plus
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 // import en from 'element-plus/lib/locale/lang/en';
 // import ja from 'element-plus/lib/locale/lang/ja';
 
 // global stylesheet
-import './assets/global.scss';
+import './assets/style/global-style.scss';
 
 // ------------------------------------------------------------
 
@@ -29,6 +30,9 @@ app.use(router);
 
 // Element Plus
 app.use(ElementPlus, { locale: zhCn, size: 'default', zIndex: 2000 });
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component);
+}
 
 // npm init vue@latest
 app.mount('#app');

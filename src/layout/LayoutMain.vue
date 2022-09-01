@@ -1,13 +1,66 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useLayoutStore } from '@/store/layout';
+
+const layoutStore = useLayoutStore();
+const handleClick = () => {
+  layoutStore.toggleMenuCollapse();
+};
+</script>
 
 <template>
-  <div class="layout-main">
-    <router-view />
+  <div
+    :class="{
+      'layout-main': true,
+      masked: layoutStore.isMasked,
+      compact: layoutStore.isLayoutCompact,
+    }"
+  >
+    <el-scrollbar class="layout-main-scrollbar">
+      <router-view />
+      <el-backtop target=".layout-main-scrollbar > div" />
+      <div
+        v-if="layoutStore.isMasked"
+        class="layout-main-mask"
+        @click="handleClick"
+      ></div>
+    </el-scrollbar>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .layout-main {
-  height: auto;
+  height: 100%;
+  transition: all 0.3s;
+  > .layout-main-scrollbar {
+    padding: 12px 0 12px 12px;
+  }
+  .el-backtop {
+    right: 20px !important;
+    bottom: calc(20px + var(--layout-footer-height)) !important;
+    background-color: var(--ml-color-elena);
+    color: white;
+    transition: all 0.3s;
+  }
+  &.compact {
+    width: 100vw;
+    flex: 0;
+  }
+  &.masked {
+    z-index: 1;
+    background-color: rgba($color: black, $alpha: 30%);
+    .el-backtop {
+      display: none;
+    }
+  }
+}
+.layout-main-mask {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(
+    100vh - var(--layout-header-height) - var(--layout-footer-height)
+  );
 }
 </style>
