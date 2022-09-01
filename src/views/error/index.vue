@@ -1,7 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ViewHeader from '@/components/ViewHeader.vue';
+</script>
 
 <template>
-  <div>error</div>
+  <ViewHeader title="Error" />
 </template>
-
 <style lang="scss" scoped></style>
