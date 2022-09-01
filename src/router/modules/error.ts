@@ -5,17 +5,11 @@ import Error from '@/views/error/index.vue';
 
 export default [
   {
-    path: '',
+    path: '/:pathMatch(.*)*',
     component: Layout,
     children: [
-      // {
-      //   path: '/error',
-      //   name: 'error',
-      //   component: Error,
-      //   meta: { title: 'error' },
-      // },
       {
-        path: '/:pathMatch(.*)',
+        path: '',
         name: 'error',
         component: Error,
         meta: { title: 'error' },

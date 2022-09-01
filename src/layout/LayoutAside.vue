@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import menuRoutes from '@/router/modules/menu';
+import menuRoutes from '@/router/modules/menuRoutes';
 import { useLayoutStore } from '@/store/layout';
 
 const layoutStore = useLayoutStore();

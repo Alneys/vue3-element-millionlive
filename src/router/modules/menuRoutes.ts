@@ -4,14 +4,14 @@ import Home from '@/views/home/index.vue';
 import About from '@/views/about/index.vue';
 import Test from '@/views/test/index.vue';
 
-type menuRoutesType = RouteRecordRaw & { meta: RouteMeta };
+type menuRouteType = RouteRecordRaw & { meta: RouteMeta };
 
-const menuRoutes: Array<menuRoutesType> = [
+const menuRoutes: Array<menuRouteType> = [
   {
-    path: '',
+    path: 'home',
     name: 'Home',
     component: Home,
-    alias: 'home',
+    alias: '',
     meta: {
       title: 'Home',
     },
@@ -34,4 +34,4 @@ const menuRoutes: Array<menuRoutesType> = [
   },
 ];
 
-export default menuRoutes as Array<menuRoutesType>;
+export default menuRoutes as Array<menuRouteType>;
