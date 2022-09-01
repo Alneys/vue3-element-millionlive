@@ -55,7 +55,6 @@ watch(
 <style lang="scss" scoped>
 .layout-aside {
   --el-menu-bg-color: transparent;
-  --el-menu-active-color: brown;
 
   width: 200px;
   height: 100%;

@@ -2,7 +2,7 @@
 
 <template>
   <div class="layout-footer">
-    <span> created by Vue 3 + Element Plus+ TypeScript + Scss </span>
+    <span> created by Vue 3 + Element Plus + TypeScript + Scss </span>
     <span> @Alneys_Al </span>
   </div>
 </template>
