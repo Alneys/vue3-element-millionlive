@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { Expand, Fold } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router';
 import { useLayoutStore } from '@/store/layout';
 
 const layoutStore = useLayoutStore();
+const router = useRouter();
+const handleClick = () => {
+  router.push('/');
+};
 </script>
 
 <template>
@@ -18,7 +23,12 @@ const layoutStore = useLayoutStore();
       :icon="layoutStore.isMenuCollapse ? Expand : Fold"
       @click="layoutStore.toggleMenuCollapse"
     />
-    <el-link type="default" :underline="false" href="/" target="_blank">
+    <el-link
+      type="default"
+      :underline="false"
+      target="_blank"
+      @click="handleClick"
+    >
       Vue3-Element-MillionLive
     </el-link>
   </div>
