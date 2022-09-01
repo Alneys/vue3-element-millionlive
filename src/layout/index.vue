@@ -75,7 +75,7 @@ const layoutStore = useLayoutStore();
     height: var(--layout-footer-height);
     padding: var(--layout-header-footer-padding);
     background-color: var(--ml-color-elena);
-    transition: all var(--el-transition-duration);
+    transition: var(--ml-transition-all);
   }
 }
 .compact-layout#layout {

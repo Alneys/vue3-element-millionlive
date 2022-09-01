@@ -40,7 +40,7 @@ const handleClick = () => {
   height: 100%;
   flex: 1;
   align-items: center;
-  transition: all var(--el-transition-duration);
+  transition: var(--ml-transition-all);
   > .el-button {
     height: 100%;
     padding: 8px 20px;
