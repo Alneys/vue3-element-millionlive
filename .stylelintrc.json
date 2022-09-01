@@ -8,6 +8,8 @@
   ],
   "rules": {
     "no-empty-source": null,
-    "rule-empty-line-before": "never-multi-line"
+    "rule-empty-line-before": "never-multi-line",
+    "selector-class-pattern": "(^[a-z][a-z0-9-]+$)|(^el-[a-z0-9-_]+$)",
+    "selector-id-pattern": "(^[a-z][a-z0-9-]+$)|(^el-[a-z0-9-_]+$)"
   }
 }
