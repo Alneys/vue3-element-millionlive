@@ -30,11 +30,11 @@ const layoutStore = useLayoutStore();
   height: 100%;
   flex: 1;
   align-items: center;
-  transition: all 0.3s;
+  transition: all var(--el-transition-duration);
   > .el-button {
     height: 100%;
     padding: 8px 20px;
-    margin-right: calc(2 * var(--el-font-size-extra-large));
+    margin-right: var(--el-font-size-extra-large);
     border-radius: 0;
     color: black;
     font-size: var(--el-font-size-extra-large);
@@ -55,9 +55,6 @@ const layoutStore = useLayoutStore();
   &.compact {
     > .el-button {
       margin-right: 4px;
-    }
-    > .el-link {
-      flex: 1;
     }
   }
 }
