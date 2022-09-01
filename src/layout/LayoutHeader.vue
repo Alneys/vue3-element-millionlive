@@ -38,6 +38,7 @@ const layoutStore = useLayoutStore();
     border-radius: 0;
     color: black;
     font-size: var(--el-font-size-extra-large);
+    transition: inherit;
     &:hover,
     &:focus {
       background-color: rgba($color: white, $alpha: 20%) !important;

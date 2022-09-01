@@ -9,9 +9,10 @@ defineProps<{ title: string }>();
 
 <style lang="scss" scoped>
 h1 {
-  margin: 0.25rem 0;
+  margin: 0;
 }
 .el-divider {
   margin: 0.5em 0;
+  font-size: var(--el-font-size-extra-large);
 }
 </style>

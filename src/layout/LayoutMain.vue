@@ -32,7 +32,10 @@ const handleClick = () => {
   height: 100%;
   transition: all var(--el-transition-duration);
   > .layout-main-scrollbar {
-    padding: var(--el-font-size-extra-small);
+    padding: 0;
+    > ::v-deep(.el-scrollbar__wrap) > .el-scrollbar__view {
+      padding: var(--el-font-size-base);
+    }
   }
   .el-backtop {
     right: 20px !important;
@@ -44,9 +47,6 @@ const handleClick = () => {
   &.compact {
     width: 100vw;
     flex: 0;
-    > .layout-main-scrollbar {
-      padding: var(--el-font-size-extra-large);
-    }
   }
   &.masked {
     z-index: 1;
