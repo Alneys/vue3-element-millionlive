@@ -2,7 +2,7 @@
 import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import menuRoutes from '@/router/modules/menuRoutes';
-import { useLayoutStore } from '@/store/layout';
+import { useLayoutStore } from '@/store/index';
 
 const layoutStore = useLayoutStore();
 const route = useRoute();
