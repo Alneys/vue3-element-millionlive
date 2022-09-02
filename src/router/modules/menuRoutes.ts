@@ -4,9 +4,12 @@ import Home from '@/views/home/index.vue';
 import About from '@/views/about/index.vue';
 import Test from '@/views/test/index.vue';
 
-type menuRouteType = RouteRecordRaw & { meta: RouteMeta };
+type MenuRouteType = RouteRecordRaw & {
+  meta: RouteMeta;
+  children?: MenuRouteType[];
+};
 
-const menuRoutes: Array<menuRouteType> = [
+const menuRoutes: MenuRouteType[] = [
   {
     path: 'home',
     name: 'Home',
@@ -34,4 +37,4 @@ const menuRoutes: Array<menuRouteType> = [
   },
 ];
 
-export default menuRoutes as Array<menuRouteType>;
+export default menuRoutes;
