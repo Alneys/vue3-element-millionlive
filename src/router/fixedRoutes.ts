@@ -13,7 +13,7 @@ export default [
     },
     children: [
       {
-        path: 'home',
+        path: 'index',
         redirect: '/',
       },
       ...menuRoutes,
