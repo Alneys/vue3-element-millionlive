@@ -5,12 +5,8 @@ import menuRoutes from './modules/menuRoutes';
 
 export default [
   {
-    path: '',
-    name: 'Dashboard',
+    path: '/',
     component: Layout,
-    meta: {
-      title: 'dashboard',
-    },
     children: [
       {
         path: 'index',
