@@ -16,13 +16,13 @@ const handleClick = () => {
   }
 };
 
-// console.log(menuStore.menus);
-// watch(
-//   () => route.path,
-//   () => {
-//     console.log(route.path);
-//   }
-// );
+console.log(menuStore.menus);
+watch(
+  () => route.path,
+  () => {
+    console.log(route.path);
+  }
+);
 </script>
 
 <template>
