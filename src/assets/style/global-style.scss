@@ -3,6 +3,9 @@
   --ml-color-miya: #d7a96b;
   --ml-color-elena: #9bce92;
 
+  // Custom transition
+  --ml-transition-all: all var(--el-transition-duration);
+
   // Layout Height
   --layout-header-height: 40px;
   --layout-footer-height: 22px;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useLayoutStore } from '@/store/layout';
+import { useLayoutStore } from '@/store/index';
 
 const layoutStore = useLayoutStore();
 const handleClick = () => {
@@ -30,7 +30,7 @@ const handleClick = () => {
 <style lang="scss" scoped>
 .layout-main {
   height: 100%;
-  transition: all var(--el-transition-duration);
+  transition: var(--ml-transition-all);
   > .layout-main-scrollbar {
     padding: 0;
     > ::v-deep(.el-scrollbar__wrap) > .el-scrollbar__view {
@@ -42,11 +42,14 @@ const handleClick = () => {
     bottom: calc(20px + var(--layout-footer-height)) !important;
     background-color: var(--ml-color-elena);
     color: white;
-    transition: all var(--el-transition-duration);
+    transition: var(--ml-transition-all);
   }
   &.compact {
     width: 100vw;
     flex: 0;
+    .el-backtop {
+      bottom: 20px !important;
+    }
   }
   &.masked {
     z-index: 1;
@@ -62,8 +65,6 @@ const handleClick = () => {
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(
-    100vh - var(--layout-header-height) - var(--layout-footer-height)
-  );
+  height: 100vh;
 }
 </style>

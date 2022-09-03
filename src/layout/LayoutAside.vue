@@ -1,21 +1,28 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import menuRoutes from '@/router/modules/menu';
-import { useLayoutStore } from '@/store/layout';
+import { useLayoutStore, useMenuStore } from '@/store/index';
 
 const layoutStore = useLayoutStore();
+const menuStore = useMenuStore();
+menuStore.generateMenus();
+
 const route = useRoute();
 const activePath = computed(() => route.path);
 
-watch(
-  () => route.path,
-  () => {
-    if (layoutStore.isMasked) {
-      layoutStore.toggleMenuCollapse();
-    }
+const handleClick = () => {
+  if (layoutStore.isMasked) {
+    layoutStore.toggleMenuCollapse();
   }
-);
+};
+
+// console.log(menuStore.menus);
+// watch(
+//   () => route.path,
+//   () => {
+//     console.log(route.path);
+//   }
+// );
 </script>
 
 <template>
@@ -27,13 +34,13 @@ watch(
     }"
   >
     <el-scrollbar class="layout-aside-scrollbar">
-      <el-menu router :default-active="activePath">
+      <el-menu router :default-active="activePath" @click="handleClick">
         <el-menu-item
-          v-for="each in menuRoutes"
-          :key="each.name"
-          :index="each.path ? each.path : '/'"
+          v-for="each in menuStore.menus"
+          :key="each.path"
+          :index="each.path"
         >
-          <template #title>{{ each.meta.title }}</template>
+          <template #title>{{ each.title }}</template>
         </el-menu-item>
         <el-menu-item index="/">
           <template #title>/</template>
@@ -55,12 +62,11 @@ watch(
 <style lang="scss" scoped>
 .layout-aside {
   --el-menu-bg-color: transparent;
-  --el-menu-active-color: brown;
 
   width: 200px;
   height: 100%;
   background-color: var(--ml-color-miya);
-  transition: all var(--el-transition-duration);
+  transition: var(--ml-transition-all);
   .el-menu {
     border-right: none;
   }

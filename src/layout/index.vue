@@ -5,7 +5,7 @@ import LayoutMain from './LayoutMain.vue';
 import LayoutFooter from './LayoutFooter.vue';
 
 import { useResizeEventListener } from './hooks/useResizeEventListener';
-import { useLayoutStore } from '@/store/layout';
+import { useLayoutStore } from '@/store/index';
 
 useResizeEventListener();
 const layoutStore = useLayoutStore();
@@ -75,6 +75,12 @@ const layoutStore = useLayoutStore();
     height: var(--layout-footer-height);
     padding: var(--layout-header-footer-padding);
     background-color: var(--ml-color-elena);
+    transition: var(--ml-transition-all);
+  }
+}
+.compact-layout#layout {
+  > .el-footer {
+    height: 0;
   }
 }
 </style>
