@@ -11,10 +11,10 @@ type MenuRouteType = RouteRecordRaw & {
 
 const menuRoutes: MenuRouteType[] = [
   {
-    path: 'home',
+    path: '',
     name: 'Home',
     component: Home,
-    alias: '',
+    alias: 'home',
     meta: {
       title: 'Home',
     },
