@@ -1,5 +1,5 @@
 import { onBeforeMount, onBeforeUnmount } from 'vue';
-import { useLayoutStore } from '@/store/index';
+import { useLayoutStore } from '@/store';
 
 export const layoutCompactWidth = 768;
 

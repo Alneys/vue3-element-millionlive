@@ -5,7 +5,7 @@ import LayoutMain from './LayoutMain.vue';
 import LayoutFooter from './LayoutFooter.vue';
 
 import { useResizeEventListener } from './scripts/useResizeEventListener';
-import { useLayoutStore } from '@/store/index';
+import { useLayoutStore } from '@/store';
 
 useResizeEventListener();
 const layoutStore = useLayoutStore();

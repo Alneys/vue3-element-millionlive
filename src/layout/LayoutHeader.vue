@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Expand, Fold } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
-import { useLayoutStore } from '@/store/index';
+import { useLayoutStore } from '@/store';
 
 const layoutStore = useLayoutStore();
 const router = useRouter();

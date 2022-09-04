@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useLayoutStore } from '@/store/index';
+import { useLayoutStore } from '@/store';
 
 const layoutStore = useLayoutStore();
 const handleClick = () => {
