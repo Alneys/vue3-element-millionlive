@@ -29,12 +29,7 @@ const router = useRouter();
     </div>
     <div class="right">
       <el-dropdown v-if="!layoutStore.isLayoutCompact">
-        <span class="el-dropdown-link">
-          Language
-          <el-icon class="el-icon--right">
-            <arrow-down />
-          </el-icon>
-        </span>
+        <span>Language</span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>zh-CN</el-dropdown-item>
@@ -101,7 +96,7 @@ const router = useRouter();
   &.compact {
     > .left {
       > .el-button {
-        margin-right: 0;
+        margin-right: 0.5em;
       }
       > .el-link {
         font-size: var(--el-font-size-large);
