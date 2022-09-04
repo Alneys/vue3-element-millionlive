@@ -4,15 +4,13 @@ import { useRoute } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store/index';
 import type { ElDropdown } from 'element-plus';
 
-import { changeDisplayLanguage } from './scripts/i18n';
-
 const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
 menuStore.generateMenus();
 
 const route = useRoute();
 const activePath = computed(() => route.path);
-const preferredLang = computed(() => route.params.preferredLang);
+const language = computed(() => route.params.language);
 
 const dropdown = ref<InstanceType<typeof ElDropdown> | null>(null);
 
@@ -21,9 +19,11 @@ const handleClick = () => {
     layoutStore.toggleMenuCollapse();
   }
 };
-const handleClickDropdown = () => {
-  console.log(123);
+const handleClickLanguageDropdownMenu = () => {
   dropdown.value?.handleOpen();
+};
+const handleCommand = (command: string) => {
+  layoutStore.preferredLang = command;
 };
 
 console.log(menuStore.menus);
@@ -50,8 +50,8 @@ watch(
             v-for="each in menuStore.menus"
             :key="each.path"
             :index="
-              preferredLang
-                ? `/${preferredLang}${each.path === '/' ? '' : each.path}`
+              language
+                ? `/${language}${each.path === '/' ? '' : each.path}`
                 : each.path
             "
           >
@@ -73,12 +73,15 @@ watch(
       </div>
       <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
         <el-divider />
-        <div class="wrap-before-el-dropdown" @click="handleClickDropdown">
+        <div
+          class="wrap-before-el-dropdown"
+          @click="handleClickLanguageDropdownMenu"
+        >
           <el-dropdown
             ref="dropdown"
             class="el-menu-item"
             trigger="click"
-            @command="changeDisplayLanguage"
+            @command="handleCommand"
           >
             <span>Language</span>
             <template #dropdown>

@@ -3,10 +3,11 @@ import { Expand, Fold } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import { useLayoutStore } from '@/store/index';
 
-import { changeDisplayLanguage } from './scripts/i18n';
-
 const layoutStore = useLayoutStore();
 const router = useRouter();
+const handleCommand = (command: string) => {
+  layoutStore.preferredLang = command;
+};
 </script>
 
 <template>
@@ -33,7 +34,7 @@ const router = useRouter();
       <el-dropdown
         v-if="!layoutStore.isLayoutCompact"
         trigger="click"
-        @command="changeDisplayLanguage"
+        @command="handleCommand"
       >
         <span>Language</span>
         <template #dropdown>
