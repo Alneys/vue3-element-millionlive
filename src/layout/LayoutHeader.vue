@@ -28,7 +28,7 @@ const router = useRouter();
       </el-link>
     </div>
     <div class="right">
-      <el-dropdown>
+      <el-dropdown v-if="!layoutStore.isLayoutCompact">
         <span class="el-dropdown-link">
           Language
           <el-icon class="el-icon--right">

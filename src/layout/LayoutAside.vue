@@ -35,31 +35,44 @@ watch(
     }"
   >
     <el-scrollbar class="layout-aside-scrollbar">
-      <el-menu router :default-active="activePath" @click="handleClick">
-        <el-menu-item
-          v-for="each in menuStore.menus"
-          :key="each.path"
-          :index="
-            preferredLang
-              ? `/${preferredLang}${each.path === '/' ? '' : each.path}`
-              : each.path
-          "
-        >
-          <template #title>{{ each.title }}</template>
-        </el-menu-item>
-        <el-menu-item index="/">
-          <template #title>/</template>
-        </el-menu-item>
-        <el-menu-item index="/home">
-          <template #title>/home</template>
-        </el-menu-item>
-        <el-menu-item index="/park">
-          <template #title>Park</template>
-        </el-menu-item>
-        <el-menu-item index="/404">
-          <template #title>404</template>
-        </el-menu-item>
-      </el-menu>
+      <div class="aside-top">
+        <el-menu router :default-active="activePath" @click="handleClick">
+          <el-menu-item
+            v-for="each in menuStore.menus"
+            :key="each.path"
+            :index="
+              preferredLang
+                ? `/${preferredLang}${each.path === '/' ? '' : each.path}`
+                : each.path
+            "
+          >
+            <template #title>{{ each.title }}</template>
+          </el-menu-item>
+          <el-menu-item index="/">
+            <template #title>/</template>
+          </el-menu-item>
+          <el-menu-item index="/home">
+            <template #title>/home</template>
+          </el-menu-item>
+          <el-menu-item index="/park">
+            <template #title>Park</template>
+          </el-menu-item>
+          <el-menu-item index="/404">
+            <template #title>404</template>
+          </el-menu-item>
+        </el-menu>
+      </div>
+      <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
+        <el-divider />
+        <el-menu>
+          <el-sub-menu index="language">
+            <template #title><span>Language</span></template>
+            <el-menu-item index="zh-CN">zh-CN</el-menu-item>
+            <el-menu-item index="en">en</el-menu-item>
+            <el-menu-item index="ja">ja</el-menu-item>
+          </el-sub-menu>
+        </el-menu>
+      </div>
     </el-scrollbar>
   </div>
 </template>
