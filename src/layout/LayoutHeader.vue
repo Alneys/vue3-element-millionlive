@@ -3,6 +3,8 @@ import { Expand, Fold } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import { useLayoutStore } from '@/store/index';
 
+import { changeDisplayLanguage } from './scripts/i18n';
+
 const layoutStore = useLayoutStore();
 const router = useRouter();
 </script>
@@ -28,14 +30,18 @@ const router = useRouter();
       </el-link>
     </div>
     <div class="right">
-      <el-dropdown v-if="!layoutStore.isLayoutCompact">
+      <el-dropdown
+        v-if="!layoutStore.isLayoutCompact"
+        trigger="click"
+        @command="changeDisplayLanguage"
+      >
         <span>Language</span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>zh-CN</el-dropdown-item>
-            <el-dropdown-item>en</el-dropdown-item>
-            <el-dropdown-item>ja</el-dropdown-item>
-            <el-dropdown-item disabled>es</el-dropdown-item>
+            <el-dropdown-item command="zh-CN">zh-CN</el-dropdown-item>
+            <el-dropdown-item command="en">en</el-dropdown-item>
+            <el-dropdown-item command="ja">ja</el-dropdown-item>
+            <el-dropdown-item command="es" disabled>es</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

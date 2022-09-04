@@ -4,6 +4,8 @@ import { useRoute } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store/index';
 import type { ElDropdown } from 'element-plus';
 
+import { changeDisplayLanguage } from './scripts/i18n';
+
 const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
 menuStore.generateMenus();
@@ -72,14 +74,19 @@ watch(
       <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
         <el-divider />
         <div class="wrap-before-el-dropdown" @click="handleClickDropdown">
-          <el-dropdown ref="dropdown" class="el-menu-item" trigger="click">
+          <el-dropdown
+            ref="dropdown"
+            class="el-menu-item"
+            trigger="click"
+            @command="changeDisplayLanguage"
+          >
             <span>Language</span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item>zh-CN</el-dropdown-item>
-                <el-dropdown-item>en</el-dropdown-item>
-                <el-dropdown-item>ja</el-dropdown-item>
-                <el-dropdown-item disabled>es</el-dropdown-item>
+                <el-dropdown-item command="zh-CN">zh-CN</el-dropdown-item>
+                <el-dropdown-item command="en">en</el-dropdown-item>
+                <el-dropdown-item command="ja">ja</el-dropdown-item>
+                <el-dropdown-item command="es" disabled>es</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
