@@ -76,25 +76,25 @@ watch(
 
 <style lang="scss" scoped>
 .layout-aside {
-  --el-menu-bg-color: transparent;
-
   width: 200px;
   height: 100%;
   background-color: var(--ml-color-miya);
   transition: var(--ml-transition-all);
-  &.compact {
-    width: 60vw;
-  }
   &.collapse {
-    width: 0;
+    width: 0 !important;
   }
   .aside-top {
     .el-menu {
+      --el-menu-bg-color: transparent;
+
       border-right: none;
     }
   }
   .aside-bottom {
-    margin-bottom: 2em;
+    margin-block: 1em;
+    > .el-divider {
+      margin-block: 1em;
+    }
     > .el-select {
       display: flex;
       height: var(--el-menu-item-height);
@@ -115,6 +115,16 @@ watch(
       }
       &:hover {
         background-color: var(--el-menu-hover-bg-color);
+      }
+    }
+  }
+}
+.layout-aside.compact {
+  width: 60vw;
+  .aside-bottom {
+    > .el-select {
+      &:hover {
+        background-color: transparent;
       }
     }
   }
