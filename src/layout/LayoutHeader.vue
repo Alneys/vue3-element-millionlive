@@ -11,18 +11,40 @@ const router = useRouter();
   <div
     :class="{
       'layout-header': true,
+      collapse: layoutStore.isMenuCollapse,
       compact: layoutStore.isLayoutCompact,
     }"
   >
-    <el-button
-      :icon="layoutStore.isMenuCollapse ? Expand : Fold"
-      plain
-      text
-      @click="layoutStore.toggleMenuCollapse"
-    />
-    <el-link :underline="false" type="default" @click="router.push('/')">
-      Vue3-Element-MillionLive
-    </el-link>
+    <div class="left">
+      <el-button
+        :icon="layoutStore.isMenuCollapse ? Expand : Fold"
+        plain
+        text
+        @click="layoutStore.toggleMenuCollapse"
+      />
+
+      <el-link :underline="false" type="default" @click="router.push('/')">
+        Vue3-Element-MillionLive
+      </el-link>
+    </div>
+    <div class="right">
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          Language
+          <el-icon class="el-icon--right">
+            <arrow-down />
+          </el-icon>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>zh-CN</el-dropdown-item>
+            <el-dropdown-item>en</el-dropdown-item>
+            <el-dropdown-item>ja</el-dropdown-item>
+            <el-dropdown-item disabled>es</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
   </div>
 </template>
 
@@ -32,32 +54,58 @@ const router = useRouter();
   height: 100%;
   flex: 1;
   align-items: center;
-  transition: var(--ml-transition-all);
-  > .el-button {
+  justify-content: space-between;
+  * {
+    transition: var(--ml-transition-all);
+  }
+  > .left {
+    display: flex;
     height: 100%;
-    padding: 8px 20px;
-    margin-right: var(--el-font-size-extra-large);
-    border-radius: 0;
-    color: black;
-    font-size: var(--el-font-size-extra-large);
     transition: inherit;
-    &:hover,
-    &:focus {
-      background-color: rgba($color: white, $alpha: 20%) !important;
+    > .el-button {
+      height: 100%;
+      padding: 0.5em 1em;
+      margin-right: 1em;
+      border-radius: 0;
+      color: black;
+      font-size: var(--el-font-size-extra-large);
+      &:hover,
+      &:focus {
+        background-color: rgba($color: white, $alpha: 20%) !important;
+      }
+      &:active {
+        background-color: transparent !important;
+      }
     }
-    &:active {
-      background-color: transparent !important;
+    > .el-link {
+      flex: 1;
+      justify-content: flex-start;
+      color: black;
+      font-size: var(--el-font-size-extra-large);
+      font-weight: bold;
+      white-space: nowrap;
     }
   }
-  > .el-link {
-    color: black;
-    font-size: var(--el-font-size-extra-large);
-    font-weight: bold;
-    white-space: nowrap;
+  > .right {
+    display: flex;
+    height: 100%;
+    margin-left: 1em;
+    > .el-dropdown {
+      height: 100%;
+      align-items: center;
+      color: black;
+      cursor: pointer;
+      white-space: nowrap;
+    }
   }
   &.compact {
-    > .el-button {
-      margin-right: 4px;
+    > .left {
+      > .el-button {
+        margin-right: 0;
+      }
+      > .el-link {
+        font-size: var(--el-font-size-large);
+      }
     }
   }
 }
