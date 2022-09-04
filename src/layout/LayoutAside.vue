@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store/index';
+import type { ElDropdown } from 'element-plus';
 
 const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
@@ -11,10 +12,16 @@ const route = useRoute();
 const activePath = computed(() => route.path);
 const preferredLang = computed(() => route.params.preferredLang);
 
+const dropdown = ref<InstanceType<typeof ElDropdown> | null>(null);
+
 const handleClick = () => {
   if (layoutStore.isMasked) {
     layoutStore.toggleMenuCollapse();
   }
+};
+const handleClickDropdown = () => {
+  console.log(123);
+  dropdown.value?.handleOpen();
 };
 
 console.log(menuStore.menus);
@@ -64,14 +71,19 @@ watch(
       </div>
       <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
         <el-divider />
-        <el-menu>
-          <el-sub-menu index="language">
-            <template #title><span>Language</span></template>
-            <el-menu-item index="zh-CN">zh-CN</el-menu-item>
-            <el-menu-item index="en">en</el-menu-item>
-            <el-menu-item index="ja">ja</el-menu-item>
-          </el-sub-menu>
-        </el-menu>
+        <div class="wrap-before-el-dropdown" @click="handleClickDropdown">
+          <el-dropdown ref="dropdown" class="el-menu-item" trigger="click">
+            <span>Language</span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>zh-CN</el-dropdown-item>
+                <el-dropdown-item>en</el-dropdown-item>
+                <el-dropdown-item>ja</el-dropdown-item>
+                <el-dropdown-item disabled>es</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
       </div>
     </el-scrollbar>
   </div>
@@ -79,20 +91,45 @@ watch(
 
 <style lang="scss" scoped>
 .layout-aside {
-  --el-menu-bg-color: transparent;
-
   width: 200px;
   height: 100%;
   background-color: var(--ml-color-miya);
   transition: var(--ml-transition-all);
-  .el-menu {
-    border-right: none;
-  }
-  &.compact {
-    width: 60vw;
-  }
   &.collapse {
-    width: 0;
+    width: 0 !important;
+  }
+
+  --el-menu-bg-color: transparent;
+  .aside-top {
+    .el-menu {
+      border-right: none;
+    }
+  }
+  .aside-bottom {
+    margin-block: 1em;
+    > .el-divider {
+      margin-block: 1em;
+    }
+    > .wrap-before-el-dropdown {
+      width: 100%;
+      height: var(--el-menu-item-height);
+      > .el-dropdown {
+        background-color: var(--el-menu-bg-color);
+        &:hover {
+          background-color: var(--el-menu-hover-bg-color);
+        }
+      }
+    }
+  }
+}
+.layout-aside.compact {
+  width: 60vw;
+  .aside-bottom {
+    > .el-select {
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 }
 </style>
