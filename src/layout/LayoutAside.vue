@@ -64,14 +64,11 @@ watch(
       </div>
       <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
         <el-divider />
-        <el-menu>
-          <el-sub-menu index="language">
-            <template #title><span>Language</span></template>
-            <el-menu-item index="zh-CN">zh-CN</el-menu-item>
-            <el-menu-item index="en">en</el-menu-item>
-            <el-menu-item index="ja">ja</el-menu-item>
-          </el-sub-menu>
-        </el-menu>
+        <el-select placeholder="Language" suffix-icon="">
+          <el-option>zh-CN</el-option>
+          <el-option>en</el-option>
+          <el-option>ja</el-option>
+        </el-select>
       </div>
     </el-scrollbar>
   </div>
@@ -85,14 +82,41 @@ watch(
   height: 100%;
   background-color: var(--ml-color-miya);
   transition: var(--ml-transition-all);
-  .el-menu {
-    border-right: none;
-  }
   &.compact {
     width: 60vw;
   }
   &.collapse {
     width: 0;
+  }
+  .aside-top {
+    .el-menu {
+      border-right: none;
+    }
+  }
+  .aside-bottom {
+    margin-bottom: 2em;
+    > .el-select {
+      display: flex;
+      height: var(--el-menu-item-height);
+      align-items: center;
+      line-height: var(--el-menu-item-height);
+      transition: border-color var(--el-transition-duration),
+        background-color var(--el-transition-duration),
+        color var(--el-transition-duration);
+      :deep(*) {
+        --el-input-bg-color: transparent;
+        --el-input-border-radius: 0;
+        --el-input-placeholder-color: var(--el-menu-text-color);
+        --el-select-input-color: var(--el-menu-text-color);
+        .el-input__wrapper {
+          padding-left: calc(var(--el-menu-base-level-padding));
+          box-shadow: none !important;
+        }
+      }
+      &:hover {
+        background-color: var(--el-menu-hover-bg-color);
+      }
+    }
   }
 }
 </style>
