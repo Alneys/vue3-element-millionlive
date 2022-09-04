@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store/index';
+import type { ElDropdown } from 'element-plus';
 
 const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
@@ -11,10 +12,16 @@ const route = useRoute();
 const activePath = computed(() => route.path);
 const preferredLang = computed(() => route.params.preferredLang);
 
+const dropdown = ref<InstanceType<typeof ElDropdown> | null>(null);
+
 const handleClick = () => {
   if (layoutStore.isMasked) {
     layoutStore.toggleMenuCollapse();
   }
+};
+const handleClickDropdown = () => {
+  console.log(123);
+  dropdown.value?.handleOpen();
 };
 
 console.log(menuStore.menus);
@@ -64,11 +71,19 @@ watch(
       </div>
       <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
         <el-divider />
-        <el-select placeholder="Language" suffix-icon="">
-          <el-option>zh-CN</el-option>
-          <el-option>en</el-option>
-          <el-option>ja</el-option>
-        </el-select>
+        <div class="wrap-before-el-dropdown" @click="handleClickDropdown">
+          <el-dropdown ref="dropdown" class="el-menu-item" trigger="click">
+            <span>Language</span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>zh-CN</el-dropdown-item>
+                <el-dropdown-item>en</el-dropdown-item>
+                <el-dropdown-item>ja</el-dropdown-item>
+                <el-dropdown-item disabled>es</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
       </div>
     </el-scrollbar>
   </div>
@@ -83,10 +98,10 @@ watch(
   &.collapse {
     width: 0 !important;
   }
+
+  --el-menu-bg-color: transparent;
   .aside-top {
     .el-menu {
-      --el-menu-bg-color: transparent;
-
       border-right: none;
     }
   }
@@ -95,26 +110,14 @@ watch(
     > .el-divider {
       margin-block: 1em;
     }
-    > .el-select {
-      display: flex;
+    > .wrap-before-el-dropdown {
+      width: 100%;
       height: var(--el-menu-item-height);
-      align-items: center;
-      line-height: var(--el-menu-item-height);
-      transition: border-color var(--el-transition-duration),
-        background-color var(--el-transition-duration),
-        color var(--el-transition-duration);
-      :deep(*) {
-        --el-input-bg-color: transparent;
-        --el-input-border-radius: 0;
-        --el-input-placeholder-color: var(--el-menu-text-color);
-        --el-select-input-color: var(--el-menu-text-color);
-        .el-input__wrapper {
-          padding-left: calc(var(--el-menu-base-level-padding));
-          box-shadow: none !important;
+      > .el-dropdown {
+        background-color: var(--el-menu-bg-color);
+        &:hover {
+          background-color: var(--el-menu-hover-bg-color);
         }
-      }
-      &:hover {
-        background-color: var(--el-menu-hover-bg-color);
       }
     }
   }
