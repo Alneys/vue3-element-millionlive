@@ -9,6 +9,7 @@ menuStore.generateMenus();
 
 const route = useRoute();
 const activePath = computed(() => route.path);
+const preferredLang = computed(() => route.params.preferredLang);
 
 const handleClick = () => {
   if (layoutStore.isMasked) {
@@ -16,13 +17,13 @@ const handleClick = () => {
   }
 };
 
-// console.log(menuStore.menus);
-// watch(
-//   () => route.path,
-//   () => {
-//     console.log(route.path);
-//   }
-// );
+console.log(menuStore.menus);
+watch(
+  () => route.path,
+  () => {
+    console.log(route.path);
+  }
+);
 </script>
 
 <template>
@@ -38,7 +39,11 @@ const handleClick = () => {
         <el-menu-item
           v-for="each in menuStore.menus"
           :key="each.path"
-          :index="each.path"
+          :index="
+            preferredLang
+              ? `/${preferredLang}${each.path === '/' ? '' : each.path}`
+              : each.path
+          "
         >
           <template #title>{{ each.title }}</template>
         </el-menu-item>

@@ -1,22 +1,13 @@
-import type { RouteRecordRaw } from 'vue-router';
+import fixedRoutes from './modules/fixedRoutesI18n';
+// export fixedRoutes from './modules/fixedRoutesNormal';
 
-import Layout from '@/layout/index.vue';
-import menuRoutes from './modules/menuRoutes';
+export default fixedRoutes;
 
-export default [
-  {
-    path: '',
-    name: 'Dashboard',
-    component: Layout,
-    meta: {
-      title: 'dashboard',
-    },
-    children: [
-      {
-        path: 'home',
-        redirect: '/',
-      },
-      ...menuRoutes,
-    ],
-  },
-] as RouteRecordRaw[];
+// import fixedRoutesI18n from './modules/fixedRoutesI18n';
+// import fixedRoutesNormal from './modules/fixedRoutesNormal';
+
+// const fixedRoutes = import.meta.env.VITE_I18N_SUPPORT
+//   ? fixedRoutesI18n
+//   : fixedRoutesNormal;
+
+// export default fixedRoutes;

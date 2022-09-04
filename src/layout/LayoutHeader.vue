@@ -5,9 +5,6 @@ import { useLayoutStore } from '@/store/index';
 
 const layoutStore = useLayoutStore();
 const router = useRouter();
-const handleClick = () => {
-  router.push('/');
-};
 </script>
 
 <template>
@@ -18,17 +15,12 @@ const handleClick = () => {
     }"
   >
     <el-button
+      :icon="layoutStore.isMenuCollapse ? Expand : Fold"
       plain
       text
-      :icon="layoutStore.isMenuCollapse ? Expand : Fold"
       @click="layoutStore.toggleMenuCollapse"
     />
-    <el-link
-      type="default"
-      :underline="false"
-      target="_blank"
-      @click="handleClick"
-    >
+    <el-link :underline="false" type="default" @click="router.push('/')">
       Vue3-Element-MillionLive
     </el-link>
   </div>
