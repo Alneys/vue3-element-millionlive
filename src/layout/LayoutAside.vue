@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store';
+import { languageList } from '@/i18n';
 import type { ElDropdown } from 'element-plus';
 
 const layoutStore = useLayoutStore();
@@ -87,10 +88,13 @@ watch(
             <span>Language</span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item command="zh-CN">zh-CN</el-dropdown-item>
-                <el-dropdown-item command="en">en</el-dropdown-item>
-                <el-dropdown-item command="ja">ja</el-dropdown-item>
-                <el-dropdown-item command="es" disabled>es</el-dropdown-item>
+                <el-dropdown-item
+                  v-for="item in languageList"
+                  :key="item.tag"
+                  :command="item.tag"
+                >
+                  {{ item.name }}
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>

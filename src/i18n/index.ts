@@ -3,12 +3,12 @@ import zhCn from './lang/zh-cn';
 import en from './lang/en';
 import ja from './lang/ja';
 
-export const languageDict = {
-  'zh-CN': '简体中文',
-  en: 'English',
-  ja: '日本語',
-  es: 'Español',
-};
+export const languageList = [
+  { tag: 'zh-CN', name: '简体中文' },
+  { tag: 'en', name: 'English' },
+  { tag: 'ja', name: '日本語' },
+  { tag: 'es', name: 'Español' },
+];
 
 const i18n = createI18n({
   legacy: false, // you must set `false`, to use Composition API
