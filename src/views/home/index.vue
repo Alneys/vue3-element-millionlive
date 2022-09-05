@@ -6,7 +6,7 @@ const count = ref(0);
 
 <template>
   <div>
-    <ViewHeader title="Home" />
+    <ViewHeader :title="$t('home.title')" />
     <p>ミリシタ ポータル</p>
     <el-button type="primary" size="default" @click="count++">
       You clicked me {{ count }} times.

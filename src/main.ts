@@ -13,6 +13,9 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import './assets/style/element-ml.scss'; // custom stylesheet for Element Plus
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 
+// vue-i18n
+import i18n from './i18n';
+
 // global stylesheet
 import './assets/style/global-style.scss';
 
@@ -31,6 +34,9 @@ app.use(ElementPlus, { locale: zhCn, size: 'default', zIndex: 2000 });
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
+
+// vue-i18n
+app.use(i18n);
 
 // npm init vue@latest
 app.mount('#app');
