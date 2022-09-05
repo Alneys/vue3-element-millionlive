@@ -24,7 +24,9 @@ const elConfig = reactive({
   locale: elLocaleList[layoutStore.preferredLang] as Language,
 });
 
+/*
 // i18n support - watch route.params.preferredLang
+// Use router.beforeEach() instead
 watch(
   () => route.params.preferredLang as string | undefined,
   (cur) => {
@@ -48,6 +50,7 @@ watch(
     }
   }
 );
+*/
 
 // i18n support - watch layoutStore.preferredLang
 watch(
