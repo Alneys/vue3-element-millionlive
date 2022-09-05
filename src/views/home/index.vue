@@ -48,6 +48,10 @@ const count = ref(0);
         to /ja/index
       </el-button>
     </p>
+    <p>
+      <el-table />
+      <el-pagination :total="1" />
+    </p>
   </div>
 </template>
 
