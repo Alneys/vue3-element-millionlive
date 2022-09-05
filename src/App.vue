@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { useLayoutStore } from './store';
 // Element Plus
 import { ElConfigProvider } from 'element-plus';
@@ -7,7 +8,6 @@ import type { Language } from 'element-plus/es/locale';
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 import en from 'element-plus/lib/locale/lang/en';
 import ja from 'element-plus/lib/locale/lang/ja';
-import { useRoute, useRouter } from 'vue-router';
 
 const layoutStore = useLayoutStore();
 const route = useRoute();
@@ -29,9 +29,22 @@ watch(
   () => route.params.preferredLang as string | undefined,
   (cur) => {
     if (typeof cur === 'string') {
-      if (cur) layoutStore.preferredLang = cur;
-      else
-        layoutStore.preferredLang = import.meta.env.VITE_I18N_DEFAULT_LANGUAGE;
+      // preferredLang exists
+      if (cur) {
+        // not empty string (/en/test): set layoutStore.preferredLang = en
+        layoutStore.preferredLang = cur;
+      } else {
+        // empty string (/test): redirect to /${layoutStore.preferredLang}/test
+        if (
+          layoutStore.preferredLang !=
+          import.meta.env.VITE_I18N_DEFAULT_LANGUAGE
+        ) {
+          router.replace(`/${layoutStore.preferredLang}${route.path}`);
+        }
+      }
+    } else {
+      // preferredLang not exists (error page, etc.)
+      // do nothing
     }
   }
 );
