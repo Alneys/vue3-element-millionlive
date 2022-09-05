@@ -79,6 +79,9 @@ const layoutStore = useLayoutStore();
   }
 }
 .compact-layout#layout {
+  > .el-header {
+    padding: 0;
+  }
   > .el-footer {
     height: 0;
   }

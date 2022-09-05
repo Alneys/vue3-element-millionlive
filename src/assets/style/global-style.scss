@@ -37,3 +37,9 @@
     font-size: var(--el-font-size-extra-small);
   }
 }
+
+@media screen and (max-width: $ml-layout-compact-width) {
+  :root {
+    --el-font-size-base: 1rem;
+  }
+}

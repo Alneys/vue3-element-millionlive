@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store/index';
+import type { ElDropdown } from 'element-plus';
 
 const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
@@ -11,10 +12,16 @@ const route = useRoute();
 const activePath = computed(() => route.path);
 const preferredLang = computed(() => route.params.preferredLang);
 
+const dropdown = ref<InstanceType<typeof ElDropdown> | null>(null);
+
 const handleClick = () => {
   if (layoutStore.isMasked) {
     layoutStore.toggleMenuCollapse();
   }
+};
+const handleClickDropdown = () => {
+  console.log(123);
+  dropdown.value?.handleOpen();
 };
 
 console.log(menuStore.menus);
@@ -35,51 +42,94 @@ watch(
     }"
   >
     <el-scrollbar class="layout-aside-scrollbar">
-      <el-menu router :default-active="activePath" @click="handleClick">
-        <el-menu-item
-          v-for="each in menuStore.menus"
-          :key="each.path"
-          :index="
-            preferredLang
-              ? `/${preferredLang}${each.path === '/' ? '' : each.path}`
-              : each.path
-          "
-        >
-          <template #title>{{ each.title }}</template>
-        </el-menu-item>
-        <el-menu-item index="/">
-          <template #title>/</template>
-        </el-menu-item>
-        <el-menu-item index="/home">
-          <template #title>/home</template>
-        </el-menu-item>
-        <el-menu-item index="/park">
-          <template #title>Park</template>
-        </el-menu-item>
-        <el-menu-item index="/404">
-          <template #title>404</template>
-        </el-menu-item>
-      </el-menu>
+      <div class="aside-top">
+        <el-menu router :default-active="activePath" @click="handleClick">
+          <el-menu-item
+            v-for="each in menuStore.menus"
+            :key="each.path"
+            :index="
+              preferredLang
+                ? `/${preferredLang}${each.path === '/' ? '' : each.path}`
+                : each.path
+            "
+          >
+            <template #title>{{ each.title }}</template>
+          </el-menu-item>
+          <el-menu-item index="/">
+            <template #title>/</template>
+          </el-menu-item>
+          <el-menu-item index="/home">
+            <template #title>/home</template>
+          </el-menu-item>
+          <el-menu-item index="/park">
+            <template #title>Park</template>
+          </el-menu-item>
+          <el-menu-item index="/404">
+            <template #title>404</template>
+          </el-menu-item>
+        </el-menu>
+      </div>
+      <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
+        <el-divider />
+        <div class="wrap-before-el-dropdown" @click="handleClickDropdown">
+          <el-dropdown ref="dropdown" class="el-menu-item" trigger="click">
+            <span>Language</span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>zh-CN</el-dropdown-item>
+                <el-dropdown-item>en</el-dropdown-item>
+                <el-dropdown-item>ja</el-dropdown-item>
+                <el-dropdown-item disabled>es</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </div>
     </el-scrollbar>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .layout-aside {
-  --el-menu-bg-color: transparent;
-
   width: 200px;
   height: 100%;
   background-color: var(--ml-color-miya);
   transition: var(--ml-transition-all);
-  .el-menu {
-    border-right: none;
-  }
-  &.compact {
-    width: 60vw;
-  }
   &.collapse {
-    width: 0;
+    width: 0 !important;
+  }
+
+  --el-menu-bg-color: transparent;
+  .aside-top {
+    .el-menu {
+      border-right: none;
+    }
+  }
+  .aside-bottom {
+    margin-block: 1em;
+    > .el-divider {
+      margin-block: 1em;
+    }
+    > .wrap-before-el-dropdown {
+      width: 100%;
+      height: var(--el-menu-item-height);
+      > .el-dropdown {
+        background-color: var(--el-menu-bg-color);
+        &:hover {
+          background-color: var(--el-menu-hover-bg-color);
+        }
+      }
+    }
+  }
+}
+.layout-aside.compact {
+  width: 60vw;
+  .aside-bottom {
+    > .el-select {
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 }
 </style>
