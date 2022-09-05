@@ -10,7 +10,7 @@ menuStore.generateMenus();
 
 const route = useRoute();
 const activePath = computed(() => route.path);
-const language = computed(() => route.params.language);
+const preferredLang = computed(() => route.params.preferredLang);
 
 const dropdown = ref<InstanceType<typeof ElDropdown> | null>(null);
 
@@ -50,8 +50,8 @@ watch(
             v-for="each in menuStore.menus"
             :key="each.path"
             :index="
-              language
-                ? `/${language}${each.path === '/' ? '' : each.path}`
+              preferredLang
+                ? `/${preferredLang}${each.path === '/' ? '' : each.path}`
                 : each.path
             "
           >
