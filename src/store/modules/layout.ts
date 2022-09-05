@@ -1,5 +1,6 @@
 import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
+import type { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 
 export const useLayoutStore = defineStore({
   id: 'layout',
@@ -17,6 +18,17 @@ export const useLayoutStore = defineStore({
   actions: {
     toggleMenuCollapse() {
       this.isMenuCollapse = !this.isMenuCollapse;
+    },
+    setPreferredLang(
+      lang: string,
+      router: Router,
+      route: RouteLocationNormalizedLoaded
+    ) {
+      this.preferredLang = lang;
+      const rawPath = route.params.preferredLang
+        ? route.path.replace(new RegExp(`^/${route.params.preferredLang}`), '')
+        : route.path;
+      router.replace(`/${lang}${rawPath}`);
     },
   },
 });

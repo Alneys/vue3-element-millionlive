@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store';
 import type { ElDropdown } from 'element-plus';
 
@@ -8,6 +8,7 @@ const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
 menuStore.generateMenus();
 
+const router = useRouter();
 const route = useRoute();
 const activePath = computed(() => route.path);
 const preferredLang = computed(() => route.params.preferredLang);
@@ -23,7 +24,7 @@ const handleClickLanguageDropdownMenu = () => {
   dropdown.value?.handleOpen();
 };
 const handleCommand = (command: string) => {
-  layoutStore.preferredLang = command;
+  layoutStore.setPreferredLang(command, router, route);
 };
 
 console.log(menuStore.menus);

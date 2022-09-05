@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { Expand, Fold } from '@element-plus/icons-vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useLayoutStore } from '@/store';
 
 const layoutStore = useLayoutStore();
 const router = useRouter();
+const route = useRoute();
 const handleCommand = (command: string) => {
-  layoutStore.preferredLang = command;
+  layoutStore.setPreferredLang(command, router, route);
 };
 </script>
 
