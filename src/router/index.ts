@@ -5,6 +5,9 @@ import {
   createWebHistory,
   type RouteRecordRaw,
 } from 'vue-router';
+
+import { useLayoutStore } from '@/store';
+
 import fixedRoutes from './fixedRoutes';
 import errorRoutes from './modules/error';
 
@@ -19,9 +22,34 @@ const router = createRouter({
 router.beforeEach((to) => {
   // remove trailing slash
   if (to.path.endsWith('/') && to.path !== '/') {
-    return to.path.replace(/\/+$/, '');
+    return {
+      path: to.path.replace(/\/+$/, ''),
+      replace: true,
+    };
   } else {
-    return true;
+    // i18n support - check route.params.preferredLang
+    const preferredLang = to.params.preferredLang as string | undefined;
+    if (typeof preferredLang === 'string') {
+      // preferredLang exists
+      const layoutStore = useLayoutStore();
+      if (preferredLang) {
+        // not empty string (/en/test): set layoutStore.preferredLang = en
+        // redirect if layoutStore.preferredLang changes
+        const ret = layoutStore.preferredLang == preferredLang ? true : to;
+        layoutStore.preferredLang = preferredLang;
+        return ret;
+      } else if (
+        layoutStore.preferredLang != import.meta.env.VITE_I18N_DEFAULT_LANGUAGE
+      ) {
+        // empty string (/test): redirect to /${layoutStore.preferredLang}/test
+        return {
+          path: `/${layoutStore.preferredLang}${to.path}`,
+          replace: true,
+        };
+      }
+    } else {
+      return true;
+    }
   }
 });
 
