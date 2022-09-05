@@ -1,20 +1,20 @@
 import { onBeforeMount, onBeforeUnmount } from 'vue';
 import { useLayoutStore } from '@/store';
 
-export const layoutCompactWidth = 768;
+export const layoutCompactWidth = 672;
 
 export const useResizeEventListener = () => {
   const store = useLayoutStore();
 
   const resizeEventListener = () => {
     if (
-      window.innerWidth < layoutCompactWidth &&
+      window.innerWidth <= layoutCompactWidth &&
       store.isLayoutCompact === false
     ) {
       store.isMenuCollapse = true;
       store.isLayoutCompact = true;
     } else if (
-      window.innerWidth >= layoutCompactWidth &&
+      window.innerWidth > layoutCompactWidth &&
       store.isLayoutCompact === true
     ) {
       store.isMenuCollapse = false;
