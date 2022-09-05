@@ -1,9 +1,14 @@
 import type { RouteRecordRaw } from 'vue-router';
-
 import { useLayoutStore } from '@/store';
+import { languageList } from '@/i18n';
+
+import menuRoutes from './menuRoutes';
 
 import Layout from '@/layout/index.vue';
-import menuRoutes from './menuRoutes';
+
+const preferredLangMatchPattern = languageList
+  .reduce((prev, each) => prev + each.tag + '|', '')
+  .slice(0, -1);
 
 export default [
   {
@@ -15,7 +20,7 @@ export default [
     },
   },
   {
-    path: '/:preferredLang(zh-CN|en|ja)?',
+    path: `/:preferredLang(${preferredLangMatchPattern})?`,
     component: Layout,
     children: [
       {

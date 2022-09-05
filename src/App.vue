@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useLayoutStore } from './store';
 // Element Plus
 import { ElConfigProvider } from 'element-plus';
@@ -9,6 +10,7 @@ import en from 'element-plus/lib/locale/lang/en';
 import ja from 'element-plus/lib/locale/lang/ja';
 
 const layoutStore = useLayoutStore();
+const { locale: i18nLocale } = useI18n({ useScope: 'global' });
 
 // i18n support
 const elLocaleList: Record<string, Language> = {
@@ -26,6 +28,7 @@ watch(
   () => layoutStore.preferredLang,
   (cur) => {
     elConfig.locale = elLocaleList[cur]; // Element Plus i18n
+    i18nLocale.value = cur; // vue-i18n
   }
 );
 </script>
