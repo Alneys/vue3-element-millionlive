@@ -19,7 +19,10 @@ const router = createRouter({
 router.beforeEach((to) => {
   // remove trailing slash
   if (to.path.endsWith('/') && to.path !== '/') {
-    return to.path.replace(/\/+$/, '');
+    return {
+      path: to.path.replace(/\/+$/, ''),
+      replace: true,
+    };
   } else {
     return true;
   }
