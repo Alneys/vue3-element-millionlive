@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { Expand, Fold } from '@element-plus/icons-vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useDark, useToggle } from '@vueuse/core';
 import { useLayoutStore } from '@/store';
 import { languageList } from '@/i18n';
 
+import { Expand, Fold, Moon, Sunny } from '@element-plus/icons-vue';
 import svgGlobe from '@/assets/icon/globe.svg?raw';
 
 const layoutStore = useLayoutStore();
 const router = useRouter();
 const route = useRoute();
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+
 const handleCommand = (command: string) => {
   layoutStore.setPreferredLang(command, router, route);
 };
@@ -34,12 +39,14 @@ const handleCommand = (command: string) => {
         Vue3-Element-MillionLive
       </el-link>
     </div>
-    <div class="right">
-      <el-dropdown
-        v-if="!layoutStore.isLayoutCompact"
-        trigger="hover"
-        @command="handleCommand"
-      >
+    <div v-if="!layoutStore.isLayoutCompact" class="right">
+      <el-button
+        :icon="isDark ? Moon : Sunny"
+        plain
+        text
+        @click="toggleDark()"
+      />
+      <el-dropdown trigger="hover" @command="handleCommand">
         <el-button plain text>
           <template #icon>
             <!-- eslint-disable-next-line vue/no-v-html -->
@@ -88,9 +95,6 @@ const handleCommand = (command: string) => {
         background-color: transparent !important;
       }
     }
-    > * + * {
-      margin-left: 1em;
-    }
   }
   > .left {
     display: flex;
@@ -99,6 +103,7 @@ const handleCommand = (command: string) => {
     > .el-link {
       flex: 1;
       justify-content: flex-start;
+      padding: 0 0.5em;
       color: var(--el-text-color-primary);
       font-size: var(--el-font-size-extra-large);
       font-weight: bold;
@@ -119,9 +124,6 @@ const handleCommand = (command: string) => {
   }
   &.compact {
     > .left {
-      > * + * {
-        margin-left: 0.25rem;
-      }
       > .el-link {
         font-size: var(--el-font-size-large);
       }
