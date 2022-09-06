@@ -119,7 +119,7 @@ watch(
   width: 200px;
   height: 100%;
   background-color: var(--ml-color-miya);
-  transition: var(--ml-transition-all);
+  transition: width var(--el-transition-duration);
   &.collapse {
     width: 0 !important;
   }

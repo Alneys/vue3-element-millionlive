@@ -30,7 +30,7 @@ const handleClick = () => {
 <style lang="scss" scoped>
 .layout-main {
   height: 100%;
-  transition: var(--ml-transition-all);
+  transition: width var(--el-transition-duration);
   > .layout-main-scrollbar {
     padding: 0;
     > ::v-deep(.el-scrollbar__wrap) > .el-scrollbar__view {
@@ -42,7 +42,7 @@ const handleClick = () => {
     bottom: calc(20px + var(--layout-footer-height)) !important;
     background-color: var(--ml-color-elena);
     color: white;
-    transition: var(--ml-transition-all);
+    transition: bottom var(--el-transition-duration);
   }
   &.compact {
     width: 100vw;

@@ -72,20 +72,20 @@ const handleCommand = (command: string) => {
   flex: 1;
   align-items: center;
   justify-content: space-between;
-  * {
-    transition: var(--ml-transition-all);
-  }
   > .left,
   > .right {
     display: flex;
     height: 100%;
-    transition: inherit;
+    .el-link {
+      transition: color var(--el-transition-duration);
+    }
     .el-button {
       height: 100%;
       padding: 0.5em 1em;
       border-radius: 0;
       color: var(--el-text-color-primary);
       font-size: var(--el-font-size-extra-large);
+      transition: all var(--el-transition-duration);
       &:hover,
       &:focus {
         background-color: rgba($color: white, $alpha: 20%) !important;
