@@ -5,6 +5,7 @@ import About from '@/views/about/index.vue';
 import Test from '@/views/test/index.vue';
 
 type MenuRouteType = RouteRecordRaw & {
+  name: string;
   meta: RouteMeta;
   children?: MenuRouteType[];
 };
@@ -12,7 +13,7 @@ type MenuRouteType = RouteRecordRaw & {
 const menuRoutes: MenuRouteType[] = [
   {
     path: '',
-    name: 'Home',
+    name: 'home',
     component: Home,
     alias: 'home',
     meta: {
@@ -21,7 +22,7 @@ const menuRoutes: MenuRouteType[] = [
   },
   {
     path: 'about',
-    name: 'About',
+    name: 'about',
     component: About,
     meta: {
       title: 'About',
@@ -29,7 +30,7 @@ const menuRoutes: MenuRouteType[] = [
   },
   {
     path: 'test',
-    name: 'Test',
+    name: 'test',
     component: Test,
     meta: {
       title: 'Test',
