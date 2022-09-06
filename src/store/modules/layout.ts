@@ -25,15 +25,24 @@ export const useLayoutStore = defineStore({
       route: RouteLocationNormalizedLoaded
     ) {
       this.preferredLang = lang;
-      if (route.params.preferredLang !== undefined) {
-        const rawPath = route.params.preferredLang
-          ? route.path.replace(
-              new RegExp(`^/${route.params.preferredLang}`),
-              ''
-            )
-          : route.path;
-        router.replace(`/${lang}${rawPath}`);
+      if (route.params.preferredLang !== undefined && route.name) {
+        router.push({
+          name: route.name,
+          params: {
+            preferredLang:
+              lang === import.meta.env.VITE_I18N_DEFAULT_LANGUAGE ? '' : lang,
+          },
+        });
       }
+      // if (route.params.preferredLang !== undefined) {
+      //   const rawPath = route.params.preferredLang
+      //     ? route.path.replace(
+      //         new RegExp(`^/${route.params.preferredLang}`),
+      //         ''
+      //       )
+      //     : route.path;
+      //   router.replace(`/${lang}${rawPath}`);
+      // }
     },
   },
 });

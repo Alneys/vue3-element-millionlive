@@ -34,18 +34,24 @@ router.beforeEach((to) => {
       const layoutStore = useLayoutStore();
       if (preferredLang) {
         // not empty string (/en/test): set layoutStore.preferredLang = en
-        // redirect if layoutStore.preferredLang changes
-        const ret = layoutStore.preferredLang == preferredLang ? true : to;
         layoutStore.preferredLang = preferredLang;
-        return ret;
+        return true;
       } else if (
         layoutStore.preferredLang != import.meta.env.VITE_I18N_DEFAULT_LANGUAGE
       ) {
         // empty string (/test): redirect to /${layoutStore.preferredLang}/test
-        return {
-          path: `/${layoutStore.preferredLang}${to.path}`,
-          replace: true,
-        };
+        if (to.name) {
+          // use name to redirect
+          return {
+            name: to.name,
+            params: { preferredLang: layoutStore.preferredLang },
+            replace: true,
+          };
+        }
+        // return {
+        //   path: `/${layoutStore.preferredLang}${to.path}`,
+        //   replace: true,
+        // };
       }
     } else {
       return true;

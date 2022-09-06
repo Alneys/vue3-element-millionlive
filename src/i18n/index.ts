@@ -15,7 +15,7 @@ const i18n = createI18n({
   locale: localStorage.language
     ? localStorage.language
     : import.meta.env.VITE_I18N_DEFAULT_LANGUAGE,
-  fallbackLocale: 'zh-CN',
+  fallbackLocale: 'en',
   messages: {
     'zh-CN': zhCn,
     en,

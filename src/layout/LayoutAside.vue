@@ -5,6 +5,8 @@ import { useLayoutStore, useMenuStore } from '@/store';
 import { languageList } from '@/i18n';
 import type { ElDropdown } from 'element-plus';
 
+import svgGlobe from '@/assets/icon/globe.svg?raw';
+
 const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
 menuStore.generateMenus();
@@ -85,7 +87,8 @@ watch(
             trigger="click"
             @command="handleCommand"
           >
-            <span>Language</span>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <i class="el-icon" v-html="svgGlobe"></i>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item

@@ -4,6 +4,8 @@ import { useRoute, useRouter } from 'vue-router';
 import { useLayoutStore } from '@/store';
 import { languageList } from '@/i18n';
 
+import svgGlobe from '@/assets/icon/globe.svg?raw';
+
 const layoutStore = useLayoutStore();
 const router = useRouter();
 const route = useRoute();
@@ -35,10 +37,15 @@ const handleCommand = (command: string) => {
     <div class="right">
       <el-dropdown
         v-if="!layoutStore.isLayoutCompact"
-        trigger="click"
+        trigger="hover"
         @command="handleCommand"
       >
-        <span>Language</span>
+        <el-button plain text>
+          <template #icon>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <span v-html="svgGlobe"></span>
+          </template>
+        </el-button>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item
@@ -65,16 +72,13 @@ const handleCommand = (command: string) => {
   * {
     transition: var(--ml-transition-all);
   }
-  > .left {
-    display: flex;
-    height: 100%;
-    transition: inherit;
-    > .el-button {
+  > .left,
+  > .right {
+    .el-button {
       height: 100%;
       padding: 0.5em 1em;
-      margin-right: 1em;
       border-radius: 0;
-      color: black;
+      color: var(--el-text-color-primary);
       font-size: var(--el-font-size-extra-large);
       &:hover,
       &:focus {
@@ -84,10 +88,18 @@ const handleCommand = (command: string) => {
         background-color: transparent !important;
       }
     }
+    > * + * {
+      margin-left: 1em;
+    }
+  }
+  > .left {
+    display: flex;
+    height: 100%;
+    transition: inherit;
     > .el-link {
       flex: 1;
       justify-content: flex-start;
-      color: black;
+      color: var(--el-text-color-primary);
       font-size: var(--el-font-size-extra-large);
       font-weight: bold;
       white-space: nowrap;
@@ -99,16 +111,16 @@ const handleCommand = (command: string) => {
     margin-left: 1em;
     > .el-dropdown {
       height: 100%;
-      align-items: center;
-      color: black;
+      color: var(--el-text-color-primary);
       cursor: pointer;
+      font-size: var(--el-font-size-extra-large);
       white-space: nowrap;
     }
   }
   &.compact {
     > .left {
-      > .el-button {
-        margin-right: 0.5em;
+      > * + * {
+        margin-left: 0.25rem;
       }
       > .el-link {
         font-size: var(--el-font-size-large);

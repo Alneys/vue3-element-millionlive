@@ -27,6 +27,7 @@ const elConfig = reactive({
 watch(
   () => layoutStore.preferredLang,
   (cur) => {
+    document.querySelector('html')?.setAttribute('lang', cur); // html lang attribute
     elConfig.locale = elLocaleList[cur]; // Element Plus i18n
     i18nLocale.value = cur; // vue-i18n
   }
