@@ -10,6 +10,13 @@ const layoutStore = useLayoutStore();
 const router = useRouter();
 const route = useRoute();
 
+const handleClick = () => {
+  if (layoutStore.isMasked) {
+    layoutStore.toggleMenuCollapse();
+  }
+  router.push('/');
+};
+
 const handleCommand = (command: string) => {
   layoutStore.setPreferredLang(command, router, route);
 };
@@ -31,7 +38,7 @@ const handleCommand = (command: string) => {
         @click="layoutStore.toggleMenuCollapse"
       />
 
-      <el-link :underline="false" type="default" @click="router.push('/')">
+      <el-link :underline="false" type="default" @click="handleClick">
         Vue3-Element-MillionLive
       </el-link>
     </div>
