@@ -48,13 +48,15 @@ const layoutStore = useLayoutStore();
     align-items: center;
     padding: var(--layout-header-footer-padding);
     background-color: var(--ml-color-elena);
-    transition: padding var(--el-transition-duration);
+    transition: padding var(--el-transition-duration),
+      background-color var(--el-transition-duration);
   }
   > .el-main {
     overflow: hidden;
     flex: 1;
     padding: 0;
     background-color: var(--ml-color-miya);
+    transition: background-color var(--el-transition-duration);
     > .el-container {
       height: 100%;
       > .el-aside {
@@ -74,7 +76,8 @@ const layoutStore = useLayoutStore();
     height: var(--layout-footer-height);
     padding: var(--layout-header-footer-padding);
     background-color: var(--ml-color-elena);
-    transition: height var(--el-transition-duration);
+    transition: height var(--el-transition-duration),
+      background-color var(--el-transition-duration);
   }
 }
 .compact-layout#layout {
