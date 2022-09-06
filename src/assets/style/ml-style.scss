@@ -1,4 +1,4 @@
-@use '@/assets/style/ml-scss-var' as *;
+@use "@/assets/style/ml-scss-var" as *;
 :root {
   // Custom color
   --ml-color-miya: #d7a96b;
@@ -15,6 +15,15 @@
   // override user agent stylesheet
   * {
     font-family: var(--ml-font-family);
+  }
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--el-text-color-primary);
   }
   h1 {
     font-size: var(--el-font-size-extra-large);
