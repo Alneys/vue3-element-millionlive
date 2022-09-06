@@ -5,6 +5,7 @@ import { useLayoutStore, useMenuStore } from '@/store';
 import { languageList } from '@/i18n';
 import type { ElDropdown } from 'element-plus';
 
+import { Moon, Sunny } from '@element-plus/icons-vue';
 import svgGlobe from '@/assets/icon/globe.svg?raw';
 
 const layoutStore = useLayoutStore();
@@ -77,10 +78,7 @@ watch(
       </div>
       <div v-if="layoutStore.isLayoutCompact" class="aside-bottom">
         <el-divider />
-        <div
-          class="wrap-before-el-dropdown"
-          @click="handleClickLanguageDropdownMenu"
-        >
+        <div @click="handleClickLanguageDropdownMenu">
           <el-dropdown
             ref="dropdown"
             class="el-menu-item"
@@ -101,6 +99,15 @@ watch(
               </el-dropdown-menu>
             </template>
           </el-dropdown>
+        </div>
+        <div>
+          <el-button
+            :icon="layoutStore.isDark ? Moon : Sunny"
+            class="el-menu-item"
+            plain
+            text
+            @click="layoutStore.toggleDark()"
+          />
         </div>
       </div>
     </el-scrollbar>
@@ -128,7 +135,7 @@ watch(
     > .el-divider {
       margin-block: 1em;
     }
-    > .wrap-before-el-dropdown {
+    > div:not(.el-divider) {
       width: 100%;
       height: var(--el-menu-item-height);
       > .el-dropdown {
@@ -136,6 +143,12 @@ watch(
         &:hover {
           background-color: var(--el-menu-hover-bg-color);
         }
+      }
+      > .el-button {
+        width: 100%;
+        justify-content: flex-start;
+        border-radius: 0;
+        color: var(--el-menu-text-color);
       }
     }
   }

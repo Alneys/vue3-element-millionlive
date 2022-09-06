@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
-import { useDark, useToggle } from '@vueuse/core';
 import { useLayoutStore } from '@/store';
 import { languageList } from '@/i18n';
 
@@ -10,9 +9,6 @@ import svgGlobe from '@/assets/icon/globe.svg?raw';
 const layoutStore = useLayoutStore();
 const router = useRouter();
 const route = useRoute();
-
-const isDark = useDark();
-const toggleDark = useToggle(isDark);
 
 const handleCommand = (command: string) => {
   layoutStore.setPreferredLang(command, router, route);
@@ -41,10 +37,10 @@ const handleCommand = (command: string) => {
     </div>
     <div v-if="!layoutStore.isLayoutCompact" class="right">
       <el-button
-        :icon="isDark ? Moon : Sunny"
+        :icon="layoutStore.isDark ? Moon : Sunny"
         plain
         text
-        @click="toggleDark()"
+        @click="layoutStore.toggleDark()"
       />
       <el-dropdown trigger="hover" @command="handleCommand">
         <el-button plain text>
@@ -81,6 +77,9 @@ const handleCommand = (command: string) => {
   }
   > .left,
   > .right {
+    display: flex;
+    height: 100%;
+    transition: inherit;
     .el-button {
       height: 100%;
       padding: 0.5em 1em;
@@ -97,9 +96,7 @@ const handleCommand = (command: string) => {
     }
   }
   > .left {
-    display: flex;
-    height: 100%;
-    transition: inherit;
+    margin-right: 1em;
     > .el-link {
       flex: 1;
       justify-content: flex-start;
@@ -111,8 +108,6 @@ const handleCommand = (command: string) => {
     }
   }
   > .right {
-    display: flex;
-    height: 100%;
     margin-left: 1em;
     > .el-dropdown {
       height: 100%;
