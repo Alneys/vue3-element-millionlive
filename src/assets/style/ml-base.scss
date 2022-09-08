@@ -1,5 +1,7 @@
-@use "@/assets/style/ml-scss-var" as *;
+@use './ml-scss-generated' as *;
 :root {
+  @include root-css-var;
+
   // Custom color
   --ml-color-miya: #d7a96b;
   --ml-color-elena: #9bce92;
@@ -9,7 +11,7 @@
   --layout-footer-height: 22px;
 
   // Font family
-  --ml-font-family: "Noto Sans SC", "Noto Sans JP", sans-serif,
+  --ml-font-family: 'Noto Sans SC', 'Noto Sans JP', sans-serif,
     var(--el-font-family);
 
   // override user agent stylesheet

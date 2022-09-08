@@ -1,4 +1,24 @@
-// Global Scss variables
-// -- (disabled) configured in vite.config.ts
+/* ML SCSS Variables */
+@use 'sass:math';
+@use 'sass:map';
+
+@use 'src/config';
+@use 'src/functions' as *;
+@use 'src/mixins' as *;
+
+@use 'element-plus/theme-chalk/src/common/var.scss' as el;
 
 $ml-layout-compact-width: 672px;
+$colors: () !default;
+$colors: map.merge(
+  (
+    'kotoha': '#92cfbb',
+    'miya': '#d7a96b',
+    'elena': '#9bce92',
+  ),
+  $colors
+);
+
+// --ml-color-kotoha: #92cfbb;
+// --ml-color-miya: #d7a96b;
+// --ml-color-elena: #9bce92;

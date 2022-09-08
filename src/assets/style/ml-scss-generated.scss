@@ -1,0 +1,11 @@
+/* ML SCSS generated style */
+
+@forward './ml-scss-var';
+
+@use 'src/config';
+@use 'src/functions' as *;
+@use 'src/mixins' as *;
+
+@mixin root-css-var {
+  --ml-color-kotoha: #92cfbb;
+}

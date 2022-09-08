@@ -1,7 +1,7 @@
 // custom stylesheet for Element Plus
-@use "./element-ml.scss";
-@use "./dark/element-ml-dark.scss";
+@use './element-ml.scss';
+@use './dark/element-ml-dark.scss';
 
 // custom stylesheet
-@use "./ml-style.scss";
-@use "./dark/ml-dark-css-var.scss";
+@use './ml-base.scss';
+@use './dark/ml-dark-css-var.scss';
