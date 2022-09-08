@@ -1,9 +1,13 @@
-@forward "element-plus/theme-chalk/src/common/var.scss" with (
+// Element Plus scss override
+
+// Custom variables
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
-    "primary": (
-      "base": #a52a2a, // brown
+    'primary': (
+      'base': #a52a2a, // brown
     ),
   )
 );
 
-@use "element-plus/theme-chalk/src/index.scss" as *;
+// import all
+@use 'element-plus/theme-chalk/src/index.scss' as *;

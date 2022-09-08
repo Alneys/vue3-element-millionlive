@@ -1,14 +1,22 @@
 <script setup lang="ts">
-import { Expand, Fold } from '@element-plus/icons-vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useLayoutStore } from '@/store';
 import { languageList } from '@/i18n';
 
+import { Expand, Fold, Moon, Sunny } from '@element-plus/icons-vue';
 import svgGlobe from '@/assets/icon/globe.svg?raw';
 
 const layoutStore = useLayoutStore();
 const router = useRouter();
 const route = useRoute();
+
+const handleClick = () => {
+  if (layoutStore.isMasked) {
+    layoutStore.toggleMenuCollapse();
+  }
+  router.push('/');
+};
+
 const handleCommand = (command: string) => {
   layoutStore.setPreferredLang(command, router, route);
 };
@@ -30,16 +38,18 @@ const handleCommand = (command: string) => {
         @click="layoutStore.toggleMenuCollapse"
       />
 
-      <el-link :underline="false" type="default" @click="router.push('/')">
+      <el-link :underline="false" type="default" @click="handleClick">
         Vue3-Element-MillionLive
       </el-link>
     </div>
-    <div class="right">
-      <el-dropdown
-        v-if="!layoutStore.isLayoutCompact"
-        trigger="hover"
-        @command="handleCommand"
-      >
+    <div v-if="!layoutStore.isLayoutCompact" class="right">
+      <el-button
+        :icon="layoutStore.isDark ? Moon : Sunny"
+        plain
+        text
+        @click="layoutStore.toggleDark()"
+      />
+      <el-dropdown trigger="hover" @command="handleCommand">
         <el-button plain text>
           <template #icon>
             <!-- eslint-disable-next-line vue/no-v-html -->
@@ -69,17 +79,20 @@ const handleCommand = (command: string) => {
   flex: 1;
   align-items: center;
   justify-content: space-between;
-  * {
-    transition: var(--ml-transition-all);
-  }
   > .left,
   > .right {
+    display: flex;
+    height: 100%;
+    .el-link {
+      transition: color var(--el-transition-duration);
+    }
     .el-button {
       height: 100%;
       padding: 0.5em 1em;
       border-radius: 0;
       color: var(--el-text-color-primary);
       font-size: var(--el-font-size-extra-large);
+      transition: all var(--el-transition-duration);
       &:hover,
       &:focus {
         background-color: rgba($color: white, $alpha: 20%) !important;
@@ -88,17 +101,13 @@ const handleCommand = (command: string) => {
         background-color: transparent !important;
       }
     }
-    > * + * {
-      margin-left: 1em;
-    }
   }
   > .left {
-    display: flex;
-    height: 100%;
-    transition: inherit;
+    margin-right: 1em;
     > .el-link {
       flex: 1;
       justify-content: flex-start;
+      padding: 0 0.5em;
       color: var(--el-text-color-primary);
       font-size: var(--el-font-size-extra-large);
       font-weight: bold;
@@ -106,8 +115,6 @@ const handleCommand = (command: string) => {
     }
   }
   > .right {
-    display: flex;
-    height: 100%;
     margin-left: 1em;
     > .el-dropdown {
       height: 100%;
@@ -119,9 +126,6 @@ const handleCommand = (command: string) => {
   }
   &.compact {
     > .left {
-      > * + * {
-        margin-left: 0.25rem;
-      }
       > .el-link {
         font-size: var(--el-font-size-large);
       }

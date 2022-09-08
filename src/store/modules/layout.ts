@@ -1,17 +1,23 @@
-import { useLocalStorage } from '@vueuse/core';
+import { useDark, useLocalStorage, useToggle } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import type { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 
 export const useLayoutStore = defineStore({
   id: 'layout',
-  state: () => ({
-    isMenuCollapse: false,
-    isLayoutCompact: false,
-    preferredLang: useLocalStorage(
-      'language',
-      import.meta.env.VITE_I18N_DEFAULT_LANGUAGE
-    ),
-  }),
+  state: () => {
+    const isDark = useDark();
+    const toggleDark = useToggle(isDark);
+    return {
+      isMenuCollapse: false,
+      isLayoutCompact: false,
+      isDark,
+      toggleDark,
+      preferredLang: useLocalStorage(
+        'language',
+        import.meta.env.VITE_I18N_DEFAULT_LANGUAGE
+      ),
+    };
+  },
   getters: {
     isMasked: (state) => state.isLayoutCompact && !state.isMenuCollapse,
   },

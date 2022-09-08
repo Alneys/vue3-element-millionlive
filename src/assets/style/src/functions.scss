@@ -1,0 +1,13 @@
+// Based on 'node_modules/element-plus/theme-chalk/src/mixins/function.scss'
+
+@use './config';
+
+@function join-var-name($list, $namespace: config.$namespace) {
+  $res: '--' + $namespace;
+  @each $item in $list {
+    @if $item != '' {
+      $res: $res + '-' + $item;
+    }
+  }
+  @return $res;
+}

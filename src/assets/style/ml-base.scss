@@ -1,22 +1,27 @@
+@use './ml-scss-generated' as *;
 :root {
-  // Custom color
-  --ml-color-miya: #d7a96b;
-  --ml-color-elena: #9bce92;
-
-  // Custom transition
-  --ml-transition-all: all var(--el-transition-duration);
+  @include root-css-var;
 
   // Layout Height
   --layout-header-height: 40px;
   --layout-footer-height: 22px;
 
   // Font family
-  --ml-font-family: "Noto Sans SC", "Noto Sans JP", sans-serif,
+  --ml-font-family: 'Noto Sans SC', 'Noto Sans JP', sans-serif,
     var(--el-font-family);
 
   // override user agent stylesheet
   * {
     font-family: var(--ml-font-family);
+  }
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--el-text-color-primary);
   }
   h1 {
     font-size: var(--el-font-size-extra-large);

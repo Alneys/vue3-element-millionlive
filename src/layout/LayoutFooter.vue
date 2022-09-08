@@ -16,6 +16,7 @@
   justify-content: flex-end;
   cursor: default;
   font-size: var(--el-font-size-extra-small);
+  transition: color var(--el-transition-duration);
   span {
     white-space: nowrap;
   }

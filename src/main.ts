@@ -10,14 +10,14 @@ import router from './router';
 import ElementPlus from 'element-plus';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 // import 'element-plus/dist/index.css'; // default stylesheet for Element Plus
-import './assets/style/element-ml.scss'; // custom stylesheet for Element Plus
+// import './assets/style/element-ml.scss'; // custom stylesheet for Element Plus (import in global stylesheet now)
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 
 // vue-i18n
 import i18n from './i18n';
 
 // global stylesheet
-import './assets/style/global-style.scss';
+import './assets/style/index.scss';
 
 // ------------------------------------------------------------
 
