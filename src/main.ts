@@ -11,7 +11,7 @@ import ElementPlus from 'element-plus';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 // import 'element-plus/dist/index.css'; // default stylesheet for Element Plus
 // import './assets/style/element-ml.scss'; // custom stylesheet for Element Plus (import in global stylesheet now)
-import zhCn from 'element-plus/lib/locale/lang/zh-cn';
+import en from 'element-plus/lib/locale/lang/en';
 
 // vue-i18n
 import i18n from './i18n';
@@ -30,7 +30,7 @@ app.use(createPinia());
 app.use(router);
 
 // Element Plus
-app.use(ElementPlus, { locale: zhCn, size: 'default', zIndex: 2000 });
+app.use(ElementPlus, { locale: en, size: 'default', zIndex: 2000 });
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
