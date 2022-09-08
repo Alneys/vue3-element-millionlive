@@ -1,20 +1,16 @@
-/* ML SCSS Variables */
+/* ML SCSS variables */
+// based on 'node_modules/element-plus/theme-chalk/src/common/var.scss'
 @use 'sass:math';
 @use 'sass:map';
 
-@use 'src/config';
 @use 'src/functions' as *;
-@use 'src/mixins' as *;
 
-@use 'element-plus/theme-chalk/src/common/var.scss' as el;
-
-$ml-layout-compact-width: 672px;
 $colors: () !default;
 $colors: map.merge(
   (
     'kotoha': '#92cfbb',
-    'miya': '#d7a96b',
     'elena': '#9bce92',
+    'miya': '#d7a96b',
   ),
   $colors
 );

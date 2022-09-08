@@ -3,11 +3,11 @@
 @use './config';
 
 @function join-var-name($list, $namespace: config.$namespace) {
-  $name: '--' + $namespace;
+  $res: '--' + $namespace;
   @each $item in $list {
     @if $item != '' {
-      $name: $name + '-' + $item;
+      $res: $res + '-' + $item;
     }
   }
-  @return $name;
+  @return $res;
 }
