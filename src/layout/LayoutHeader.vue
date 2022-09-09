@@ -85,19 +85,15 @@ const handleCommand = (command: string) => {
       transition: color var(--el-transition-duration);
     }
     .el-button {
+      --el-fill-color: rgb(255 255 255 / 50%);
+      --el-fill-color-light: rgb(255 255 255 / 20%);
+
       height: 100%;
       padding: 0.5em 1em;
       border-radius: 0;
       color: var(--el-text-color-primary);
       font-size: var(--el-font-size-extra-large);
       transition: all var(--el-transition-duration);
-      &:hover,
-      &:focus {
-        background-color: rgba($color: white, $alpha: 20%) !important;
-      }
-      &:active {
-        background-color: transparent !important;
-      }
     }
   }
   > .left {

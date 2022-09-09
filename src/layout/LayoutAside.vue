@@ -144,6 +144,7 @@ watch(
       }
       > .el-button {
         --el-fill-color-light: var(--el-menu-hover-bg-color);
+        --el-fill-color: var(--el-menu-hover-bg-color);
 
         width: 100%;
         justify-content: flex-start;
