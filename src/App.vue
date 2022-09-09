@@ -51,5 +51,6 @@ body,
   margin: 0;
   background-color: var(--el-bg-color);
   color: var(--el-text-color-primary);
+  font-family: var(--el-font-family);
 }
 </style>
