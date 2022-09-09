@@ -33,7 +33,6 @@ const handleCommand = (command: string) => {
     <div class="left">
       <el-button
         :icon="layoutStore.isMenuCollapse ? Expand : Fold"
-        plain
         text
         @click="layoutStore.toggleMenuCollapse"
       />
@@ -45,12 +44,11 @@ const handleCommand = (command: string) => {
     <div v-if="!layoutStore.isLayoutCompact" class="right">
       <el-button
         :icon="layoutStore.isDark ? Moon : Sunny"
-        plain
         text
         @click="layoutStore.toggleDark()"
       />
       <el-dropdown trigger="hover" @command="handleCommand">
-        <el-button plain text>
+        <el-button text>
           <template #icon>
             <!-- eslint-disable-next-line vue/no-v-html -->
             <span v-html="svgGlobe"></span>
