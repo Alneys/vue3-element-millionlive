@@ -49,6 +49,7 @@ body,
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: var(--ml-color-miya);
+  background-color: var(--el-bg-color);
+  color: var(--el-text-color-primary);
 }
 </style>

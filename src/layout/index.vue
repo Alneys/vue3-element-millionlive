@@ -55,7 +55,7 @@ const layoutStore = useLayoutStore();
     overflow: hidden;
     flex: 1;
     padding: 0;
-    background-color: var(--ml-color-miya);
+    background-color: var(--el-bg-color);
     transition: background-color var(--el-transition-duration);
     > .el-container {
       height: 100%;
