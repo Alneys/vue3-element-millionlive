@@ -2,7 +2,7 @@
 // based on 'node_modules/element-plus/theme-chalk/src/var.scss'
 @use 'sass:map';
 
-@use './ml-scss-var' as *;
+@use './ml-scss-vars' as *;
 
 @use 'src/config';
 @use 'src/functions' as *;
@@ -10,7 +10,8 @@
 
 $ml-layout-compact-width: 672px !default; 
 
-@mixin root-css-var {
+// generate scss
+:root {
   // ML custom colors
   @each $name in map.keys($colors) {
     @include set-css-var-value('color-' + $name, map.get($colors, $name));

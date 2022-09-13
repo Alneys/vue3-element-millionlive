@@ -2,6 +2,7 @@
 
 @use './config';
 
+// join-var-name(('button', 'text-color')) => '--ml-button-text-color'
 @function join-var-name($list, $namespace: config.$namespace) {
   $res: '--' + $namespace;
   @each $item in $list {

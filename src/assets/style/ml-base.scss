@@ -1,7 +1,8 @@
+// include ML SCSS generated style
 @use './ml-scss-generated' as *;
-:root {
-  @include root-css-var;
 
+/* ML SCSS style */
+:root {
   // Layout Height
   --layout-header-height: 40px;
   --layout-footer-height: 22px;
