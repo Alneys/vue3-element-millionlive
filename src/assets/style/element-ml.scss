@@ -5,8 +5,7 @@
 // Custom variables
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $bg-color: (
-    // --ml-color-miya
-    '': #d7a96b,
+    '': var(--ml-color-miya),
   ),
   $colors: (
     'primary': (
