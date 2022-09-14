@@ -8,7 +8,7 @@
 @use 'src/functions' as *;
 @use 'src/mixins' as *;
 
-$ml-layout-compact-width: 672px !default; 
+$ml-layout-compact-width: 672px !default;
 
 // generate scss
 :root {
@@ -16,4 +16,6 @@ $ml-layout-compact-width: 672px !default;
   @each $name in map.keys($colors) {
     @include set-css-var-value('color-' + $name, map.get($colors, $name));
   }
+
+  --ml-layout-header-color: #{map.get($colors, 'elena')};
 }

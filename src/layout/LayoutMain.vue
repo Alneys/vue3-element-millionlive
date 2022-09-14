@@ -41,7 +41,7 @@ const handleClick = () => {
   .el-backtop {
     right: 20px !important;
     bottom: calc(20px + var(--layout-footer-height)) !important;
-    background-color: var(--ml-color-elena);
+    background-color: var(--ml-layout-header-color);
     color: white;
     transition: all var(--el-transition-duration);
   }

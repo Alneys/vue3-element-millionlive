@@ -47,7 +47,7 @@ const layoutStore = useLayoutStore();
     height: var(--layout-header-height);
     align-items: center;
     padding: var(--layout-header-footer-padding);
-    background-color: var(--ml-color-elena);
+    background-color: var(--ml-layout-header-color);
     transition: padding var(--el-transition-duration),
       background-color var(--el-transition-duration);
   }
@@ -75,7 +75,7 @@ const layoutStore = useLayoutStore();
     overflow: hidden;
     height: var(--layout-footer-height);
     padding: var(--layout-header-footer-padding);
-    background-color: var(--ml-color-elena);
+    background-color: var(--ml-layout-header-color);
     transition: height var(--el-transition-duration),
       background-color var(--el-transition-duration);
   }
