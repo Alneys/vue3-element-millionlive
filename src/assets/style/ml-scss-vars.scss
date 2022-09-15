@@ -8,9 +8,9 @@
 $colors: () !default;
 $colors: map.merge(
   (
-    'kotoha': '#92cfbb',
-    'elena': '#9bce92',
-    'miya': '#d7a96b',
+    'kotoha': #92cfbb,
+    'elena': #9bce92,
+    'miya': #d7a96b,
   ),
   $colors
 );

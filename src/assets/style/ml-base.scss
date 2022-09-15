@@ -1,27 +1,15 @@
+// include ML SCSS generated style
 @use './ml-scss-generated' as *;
-:root {
-  @include root-css-var;
 
+/* ML SCSS style */
+:root {
   // Layout Height
   --layout-header-height: 40px;
   --layout-footer-height: 22px;
 
-  // Font family
-  --ml-font-family: 'Noto Sans SC', 'Noto Sans JP', sans-serif,
-    var(--el-font-family);
-
   // override user agent stylesheet
-  * {
-    font-family: var(--ml-font-family);
-  }
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--el-text-color-primary);
+  button, input, optgroup, select, textarea {
+    font-family: var(--el-font-family);
   }
   h1 {
     font-size: var(--el-font-size-extra-large);

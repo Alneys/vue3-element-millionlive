@@ -1,13 +1,74 @@
-// Element Plus scss override
+// stylelint-disable function-name-case
+
+/* Element Plus SCSS variables override */
 
 // Custom variables
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $bg-color: (
+    '': var(--ml-color-miya),
+  ),
   $colors: (
     'primary': (
-      'base': #a52a2a, // brown
+      // brown
+      'base': #a52a2a,
     ),
+  ),
+  $font-family: (
+    '':
+      "'Noto Sans SC', 'Noto Sans JP', sans-serif, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial",
   )
 );
 
-// import all
-@use 'element-plus/theme-chalk/src/index.scss' as *;
+// import all styles
+@use 'element-plus/theme-chalk/src/index.scss';
+
+/* Element Plus SCSS override */
+@use 'element-plus/theme-chalk/src/mixins/mixins.scss' as *;
+
+// button.scss
+// -- disable :focus effect
+@include b(button) {
+  &:focus {
+    border-color: getCssVar('button', 'border-color');
+    background-color: getCssVar('button', 'bg-color');
+    color: getCssVar('button', 'text-color');
+    outline: none;
+  }
+  &:hover {
+    border-color: getCssVar('button', 'hover', 'border-color');
+    background-color: getCssVar('button', 'hover', 'bg-color');
+    color: getCssVar('button', 'hover', 'text-color');
+    outline: none;
+  }
+  &:active {
+    border-color: getCssVar('button', 'active', 'border-color');
+    background-color: getCssVar('button', 'active', 'bg-color');
+    color: getCssVar('button', 'active', 'text-color');
+    outline: none;
+  }
+
+  @include when(text) {
+    &:not(.is-disabled) {
+      &:focus {
+        background-color: transparent;
+      }
+      &:hover {
+        background-color: getCssVar('fill-color', 'light');
+      }
+      &:active {
+        background-color: getCssVar('fill-color');
+      }
+    }
+    @include when(has-bg) {
+      &:focus {
+        background-color: getCssVar('fill-color', 'light');
+      }
+      &:hover {
+        background-color: getCssVar('fill-color');
+      }
+      &:active {
+        background-color: getCssVar('fill-color', 'dark');
+      }
+    }
+  }
+}

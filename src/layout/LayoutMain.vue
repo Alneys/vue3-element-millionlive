@@ -34,14 +34,14 @@ const handleClick = () => {
     background-color var(--el-transition-duration);
   > .layout-main-scrollbar {
     padding: 0;
-    > ::v-deep(.el-scrollbar__wrap) > .el-scrollbar__view {
+    > :deep(.el-scrollbar__wrap) > .el-scrollbar__view {
       padding: var(--el-font-size-base);
     }
   }
   .el-backtop {
     right: 20px !important;
     bottom: calc(20px + var(--layout-footer-height)) !important;
-    background-color: var(--ml-color-elena);
+    background-color: var(--ml-layout-header-color);
     color: white;
     transition: all var(--el-transition-duration);
   }

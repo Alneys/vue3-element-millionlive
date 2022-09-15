@@ -104,7 +104,6 @@ watch(
           <el-button
             :icon="layoutStore.isDark ? Moon : Sunny"
             class="el-menu-item"
-            plain
             text
             @click="layoutStore.toggleDark()"
           />
@@ -144,6 +143,9 @@ watch(
         }
       }
       > .el-button {
+        --el-fill-color-light: var(--el-menu-hover-bg-color);
+        --el-fill-color: var(--el-menu-hover-bg-color);
+
         width: 100%;
         justify-content: flex-start;
         border-radius: 0;
