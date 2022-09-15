@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, watch } from 'vue';
+import { computed, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useLayoutStore } from './store';
 // Element Plus
@@ -20,7 +20,9 @@ const elLocaleList: Record<string, Language> = {
 };
 
 const elConfig = reactive({
-  locale: elLocaleList[layoutStore.preferredLang] as Language,
+  locale: computed<Language | undefined>(
+    () => elLocaleList[layoutStore.preferredLang]
+  ),
 });
 
 // i18n support - watch layoutStore.preferredLang
@@ -28,8 +30,8 @@ watch(
   () => layoutStore.preferredLang,
   (cur) => {
     document.querySelector('html')?.setAttribute('lang', cur); // html lang attribute
-    elConfig.locale = elLocaleList[cur]; // Element Plus i18n
     i18nLocale.value = cur; // vue-i18n
+    // elConfig.locale = elLocaleList[cur]; // Element Plus i18n --> computedRef
   }
 );
 </script>
