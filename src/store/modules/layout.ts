@@ -2,6 +2,8 @@ import { useDark, useLocalStorage, useToggle } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import type { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 
+import { getDefaultPreferredLang } from '@/i18n';
+
 export const useLayoutStore = defineStore({
   id: 'layout',
   state: () => {
@@ -12,10 +14,7 @@ export const useLayoutStore = defineStore({
       isLayoutCompact: false,
       isDark,
       toggleDark,
-      preferredLang: useLocalStorage(
-        'language',
-        import.meta.env.VITE_I18N_DEFAULT_LANGUAGE
-      ),
+      preferredLang: useLocalStorage('language', getDefaultPreferredLang()),
     };
   },
   getters: {

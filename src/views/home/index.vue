@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import ViewHeader from '@/components/ViewHeader.vue';
+import ViewHeader from '@/views/components/ViewHeader.vue';
 const count = ref(0);
 </script>
 

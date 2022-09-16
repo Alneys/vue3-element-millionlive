@@ -54,7 +54,7 @@ const handleClick = () => {
   }
   &.masked {
     z-index: 1;
-    background-color: rgba($color: black, $alpha: 30%);
+    background-color: rgb(0 0 0 / 30%);
     .el-backtop {
       display: none;
     }

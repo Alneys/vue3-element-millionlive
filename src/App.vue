@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, watch } from 'vue';
+import { computed, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useLayoutStore } from './store';
 // Element Plus
@@ -10,17 +10,18 @@ import en from 'element-plus/lib/locale/lang/en';
 import ja from 'element-plus/lib/locale/lang/ja';
 
 const layoutStore = useLayoutStore();
-const { locale: i18nLocale } = useI18n({ useScope: 'global' });
 
 // i18n support
+const { locale: i18nLocale } = useI18n({ useScope: 'global' });
 const elLocaleList: Record<string, Language> = {
   'zh-CN': zhCn,
   en,
   ja,
 };
-
 const elConfig = reactive({
-  locale: elLocaleList[layoutStore.preferredLang] as Language,
+  locale: computed<Language | undefined>(
+    () => elLocaleList[layoutStore.preferredLang]
+  ),
 });
 
 // i18n support - watch layoutStore.preferredLang
@@ -28,8 +29,8 @@ watch(
   () => layoutStore.preferredLang,
   (cur) => {
     document.querySelector('html')?.setAttribute('lang', cur); // html lang attribute
-    elConfig.locale = elLocaleList[cur]; // Element Plus i18n
     i18nLocale.value = cur; // vue-i18n
+    // elConfig.locale = elLocaleList[cur]; // Element Plus i18n --> computedRef
   }
 );
 </script>

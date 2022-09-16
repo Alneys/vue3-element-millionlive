@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ViewHeader from '@/components/ViewHeader.vue';
+import ViewHeader from '@/views/components/ViewHeader.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();

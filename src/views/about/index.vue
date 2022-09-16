@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ViewHeader from '@/components/ViewHeader.vue';
+import ViewHeader from '@/views/components/ViewHeader.vue';
 </script>
 
 <template>
