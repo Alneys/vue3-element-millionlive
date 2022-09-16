@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useLayoutStore, useMenuStore } from '@/store';
 import { languageList } from '@/i18n';
@@ -10,7 +10,6 @@ import svgGlobe from '@/assets/icon/globe.svg?raw';
 
 const layoutStore = useLayoutStore();
 const menuStore = useMenuStore();
-menuStore.generateMenus();
 
 const router = useRouter();
 const route = useRoute();
@@ -30,14 +29,6 @@ const handleClickLanguageDropdownMenu = () => {
 const handleCommand = (command: string) => {
   layoutStore.setPreferredLang(command, router, route);
 };
-
-console.log(menuStore.menus);
-watch(
-  () => route.path,
-  () => {
-    console.log(route.path);
-  }
-);
 </script>
 
 <template>

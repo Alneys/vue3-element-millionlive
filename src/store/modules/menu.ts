@@ -40,7 +40,7 @@ const generateMenus = (menuR: typeof menuRoutes, parentPath = ''): Menu[] => {
 export const useMenuStore = defineStore({
   id: 'menu',
   state: () => ({
-    menus: [] as Menu[],
+    menus: generateMenus(menuRoutes, ''),
   }),
   actions: {
     generateMenus() {

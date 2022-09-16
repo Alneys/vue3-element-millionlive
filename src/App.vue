@@ -10,15 +10,14 @@ import en from 'element-plus/lib/locale/lang/en';
 import ja from 'element-plus/lib/locale/lang/ja';
 
 const layoutStore = useLayoutStore();
-const { locale: i18nLocale } = useI18n({ useScope: 'global' });
 
 // i18n support
+const { locale: i18nLocale } = useI18n({ useScope: 'global' });
 const elLocaleList: Record<string, Language> = {
   'zh-CN': zhCn,
   en,
   ja,
 };
-
 const elConfig = reactive({
   locale: computed<Language | undefined>(
     () => elLocaleList[layoutStore.preferredLang]
